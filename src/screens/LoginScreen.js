@@ -55,7 +55,7 @@ export default ({ navigation }) => {
                 returnKeyType="next" 
                 blurOnSubmit={false} 
                 style={styles.input} 
-                left={<TextInput.Icon name="account" color={'#5AA897'} />}
+                left={<TextInput.Icon name="account" color={'#0c4271'} />}
 
             />
 
@@ -68,7 +68,7 @@ export default ({ navigation }) => {
                 onChangeText={setPassword}
                 secureTextEntry={!isPasswordVisible}
                 autoCapitalize="none"
-                left={<TextInput.Icon name="form-textbox-password" color={'#5AA897'} />}
+                left={<TextInput.Icon name="form-textbox-password" color={'#0c4271'} />}
                 right={<TextInput.Icon name={isPasswordVisible ? 'eye-off' : 'eye'} onPress={() => setIsPasswordVisible((state) => !state)} />}
             />
 
@@ -106,7 +106,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#f9dfdc',
         flex: 1,
     },
-    
+
+    input: {
+        height: 50,
+        width: '90%',
+        backgroundColor: 'white',
+        marginTop: 20,
+        fontSize: 15,
+    },
+
     logo: {
         marginTop: 70,
         height: '60%',
@@ -164,11 +172,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         
     },
-    input: {
-        height: 50,
-        width: '90%',
-        backgroundColor: 'white',
-        marginTop: 20,
-        fontSize: 15,
-    }
 })
