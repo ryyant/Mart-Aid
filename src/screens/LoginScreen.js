@@ -106,7 +106,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#f9dfdc',
         flex: 1,
     },
-    
+
+    input: {
+        height: 50,
+        width: '90%',
+        backgroundColor: 'white',
+        marginTop: 20,
+        fontSize: 15,
+    },
+
     logo: {
         marginTop: 70,
         height: '60%',
@@ -163,11 +171,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         
     },
-    input: {
-        height: 50,
-        width: '90%',
-        backgroundColor: 'white',
-        marginTop: 20,
-        fontSize: 15,
-    }
 })
