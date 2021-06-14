@@ -13,9 +13,9 @@ import Screen from "../components/Screen";
 
 export default function RequestsScreen({ navigation }) {
   const requests = [
-    { title: "hello", id: "0" },
-    { title: "help", id: "1" },
-    { title: "hey", id: "2" },
+    { title: "Request1", id: "0" },
+    { title: "Request2", id: "1" },
+    { title: "Request3", id: "2" },
   ];
 
   function renderItem({ item }) {
@@ -25,7 +25,7 @@ export default function RequestsScreen({ navigation }) {
           padding: 10,
           paddingTop: 20,
           paddingBottom: 20,
-          borderBottomColor: "#ccc",
+          borderBottomColor: "blue",
           borderBottomWidth: 1,
           flexDirection: "row",
           justifyContent: "space-between",

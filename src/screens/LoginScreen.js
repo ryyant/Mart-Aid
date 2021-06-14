@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
 
     logoName: {
         fontSize: 55,
-        fontFamily: 'Merriweather_700Bold',
-        alignSelf: 'center'
+        fontFamily: 'AvenirNext-Bold',
+        alignSelf: 'center',
     },
 
     button: {
@@ -156,7 +156,8 @@ const styles = StyleSheet.create({
         color: 'black',
         marginTop: 15,
         fontSize: 20,
-        fontFamily: 'Merriweather_400Regular'
+        fontFamily: 'Avenir',
+        fontWeight: '600'
     },
 
     textContainer: {
