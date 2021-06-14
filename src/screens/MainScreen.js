@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 
+
 export default function MainScreen() {
     return (
         <View style={styles.container}>
