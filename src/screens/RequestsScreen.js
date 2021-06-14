@@ -7,10 +7,11 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  Header,
 } from "react-native";
 import Screen from "../components/Screen";
 
-export default function RequestsScreen({navigation}) {
+export default function RequestsScreen({ navigation }) {
   const requests = [
     { title: "hello", id: "0" },
     { title: "help", id: "1" },
@@ -36,21 +37,23 @@ export default function RequestsScreen({navigation}) {
   }
 
   return (
-    <Screen>
+    <Screen styles = {styles.container}>
       <TouchableOpacity
         styles={{ color: "black" }}
         onPress={() => navigation.navigate("Login")}
       >
         <Text>Back to Login</Text>
       </TouchableOpacity>
+      <View style = {{backgroundColor:'#c3bef0'}}><Text style = {styles.header}>Requests</Text></View>
       <Text>
-      <FlatList
-        data={requests}
-        renderItem={renderItem}
-        style={{ width: "100%" }}
-        keyExtractor={(item) => item.id.toString()}
-      />
+        <FlatList
+          data={requests}
+          renderItem={renderItem}
+          style={{ width: "100%" }}
+          keyExtractor={(item) => item.id.toString()}
+        />
       </Text>
+      <Text>hello</Text>
     </Screen>
   );
 }
@@ -62,4 +65,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  header: {
+      color:'#defcf9',
+      fontWeight:'bold',
+      fontSize: 40,
+      alignSelf: 'center',
+      fontFamily: 'Avenir',
+      padding: 10
+  }
 });
