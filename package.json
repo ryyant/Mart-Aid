@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.1.0",
-    "@expo-google-fonts/montserrat": "^0.1.0",
-    "@expo-google-fonts/roboto": "^0.1.0",
+    "@expo-google-fonts/merriweather": "^0.1.0",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/material-bottom-tabs": "^5.3.15",

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 
+
 export default function WelcomeScreen() {
     return (
         <View style={styles.container}>
