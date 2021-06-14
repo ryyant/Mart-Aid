@@ -16,6 +16,8 @@ export default ({ navigation }) => {
     const [ password, onChangePassword ] = React.useState("");
     const [ username, onChangeName ] = React.useState("");
     const [isRegisterLoading, setIsRegisterLoading] = useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
     
     const handleRegister = () => {
         Keyboard.dismiss();
@@ -26,7 +28,7 @@ export default ({ navigation }) => {
             (user) => navigation.dispatch(CommonActions.reset({
                 index: 0,
                 routes: [{
-                name: "Main",
+                name: "Requests",
                 params: { name: user.displayName }
                 }]
             })),
@@ -46,13 +48,11 @@ export default ({ navigation }) => {
 
             <View style={styles.textContainer}>
 
-                <Text style={styles.font}>
-                    Full name
-                </Text>
+                <Text style={styles.registerText}>Register a New Account</Text>
 
                 <TextInput 
                     label="Your name"
-                    placeholder="e.g., Albert Einstein Tan Chow Boon"
+                    placeholder="e.g., Harry Styles"
                     style={styles.input}
                     onChangeText={onChangeName}
                     value={username} 
@@ -60,14 +60,13 @@ export default ({ navigation }) => {
                     returnKeyType="next"
                     blurOnSubmit={false}
                     theme={{ colors: { primary: 'black', underlineColor: 'transparent', background: '#003489' } }}
+                    left={<TextInput.Icon name="account" color={'#5AA897'} />}
 
                 />
                 
-                <Text style={styles.font}>
-                    Email address
-                </Text>
 
                 <TextInput 
+                    marginTop
                     mode="flat"
                     label="Email address"
                     placeholder="e.g., josh@example.com"
@@ -82,24 +81,25 @@ export default ({ navigation }) => {
 
                 />
 
-                <Text style={styles.font}>
-                    Password
-                </Text>
 
                 <TextInput 
                     mode="flat"
                     label="Password"
-                    placeholder="e.g., who knows?"
+                    placeholder="e.g., asdfghjk"
                     autoCapitalize="none"
                     style={styles.input} 
                     onChangeText={onChangePassword}
                     value={password}
                     theme={{ colors: { primary: 'black', underlineColor: 'transparent', background: '#003489' } }}
-
+                    secureTextEntry={!isPasswordVisible}
+                    left={<TextInput.Icon name="form-textbox-password" color={'#5AA897'} />}
+                    right={<TextInput.Icon name={isPasswordVisible ? 'eye-off' : 'eye'} onPress={() => setIsPasswordVisible((state) => !state)} />}
+    
                 />
 
                 <TouchableOpacity style={styles.signUpButton} onPress={handleRegister}> 
-                    <Image source={require('../../assets/sign-up-button.png')}></Image> 
+                <Text style={styles.buttonText}>Sign Up</Text>
+
                 </TouchableOpacity>
 
                 <TouchableOpacity 
@@ -107,7 +107,7 @@ export default ({ navigation }) => {
                     onPress={() => navigation.navigate("Login")}
                 >
 
-                <Text style={styles.backToLoginText}>Back to Login</Text>
+                <Text style={styles.buttonText}>Back to Login</Text>
                 </TouchableOpacity>
 
             </View>
@@ -123,21 +123,25 @@ const styles = StyleSheet.create({
         backgroundColor: '#f9dfdc',
         flex: 1,
     },
-    font: {
 
+    input: {
+        height: 50,
+        width: '90%',
+        backgroundColor: 'white',
+        fontSize: 15,
+        marginTop: 20
+    },
+
+    font: {
         fontSize: 20,
         paddingTop: 15,
         paddingBottom: 5,
+        marginLeft: 20,
         fontFamily: 'Merriweather_400Regular',
-        fontSize: 18
+        fontSize: 18,
+        alignSelf: 'flex-start'
     },
-    input: {
-        backgroundColor: "#e1e1e1",
-        height: 40,
-        width: 320,
-        borderWidth: 1,
-        borderColor: "#d0d0d0",
-    },
+    
     loginButton: {
         transform: [{scale: 0.5}]
     },
@@ -148,6 +152,14 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         alignSelf: 'center'
     },
+
+    registerText: {
+        fontSize: 30,
+        fontFamily: 'Merriweather_700Bold',
+        alignSelf: 'center',
+        color: 'black'
+    },
+
     signUpButton: {
         transform: [{scale: 0.5}]
     },
@@ -155,18 +167,29 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
 
-    backToLoginText: {
+    buttonText: {
         color: 'white',
+        fontSize: 18,
         fontFamily: 'Merriweather_400Regular'
     },
 
     backToLoginButton: {
-        padding: 15,
-        marginTop: 15,
+        padding: 20,
+        marginTop: 25,
         alignItems: 'center',
         alignSelf: 'center',
         backgroundColor: '#0c4271' ,
         width: '50%',
+        borderRadius: 55
+    },
+
+    signUpButton: {
+        padding: 20,
+        marginTop: 25,
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: '#0c4271' ,
+        width: '38%',
         borderRadius: 55
     }
 })
