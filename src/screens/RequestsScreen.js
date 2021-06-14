@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import Screen from "../components/Screen";
 
-export default function RequestsScreen({ navigation }) {
+export default function NewRequest({ navigation }) {
   const requests = [
     { title: "Request1", id: "0" },
     { title: "Request2", id: "1" },
@@ -44,16 +44,13 @@ export default function RequestsScreen({ navigation }) {
       >
         <Text>Back to Login</Text>
       </TouchableOpacity>
-<<<<<<< HEAD
       <TouchableOpacity
         styles={{ color: "black" }}
         onPress={() => navigation.navigate("NewRequest")}
       >
         <Text>New Request</Text>
       </TouchableOpacity>
-=======
       <View style = {{backgroundColor:'#c3bef0'}}><Text style = {styles.header}>Requests</Text></View>
->>>>>>> ac64b529e1f164f3800c993162c2073e6c40ea1d
       <Text>
         <FlatList
           data={requests}
@@ -62,11 +59,7 @@ export default function RequestsScreen({ navigation }) {
           keyExtractor={(item) => item.id.toString()}
         />
       </Text>
-<<<<<<< HEAD
-      
-=======
       <Text>hello</Text>
->>>>>>> ac64b529e1f164f3800c993162c2073e6c40ea1d
     </Screen>
   );
 }
