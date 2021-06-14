@@ -55,7 +55,7 @@ export default ({ navigation }) => {
                 returnKeyType="next" 
                 blurOnSubmit={false} 
                 style={styles.input} 
-                left={<TextInput.Icon name="account" color={'#5AA897'} />}
+                left={<TextInput.Icon name="account" color={'#0c4271'} />}
 
             />
 
@@ -68,7 +68,7 @@ export default ({ navigation }) => {
                 onChangeText={setPassword}
                 secureTextEntry={!isPasswordVisible}
                 autoCapitalize="none"
-                left={<TextInput.Icon name="form-textbox-password" color={'#5AA897'} />}
+                left={<TextInput.Icon name="form-textbox-password" color={'#0c4271'} />}
                 right={<TextInput.Icon name={isPasswordVisible ? 'eye-off' : 'eye'} onPress={() => setIsPasswordVisible((state) => !state)} />}
             />
 
