@@ -8,6 +8,7 @@ import LoginScreen from "./src/screens/LoginScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import LoadingScreen from "./src/screens/LoadingScreen";
 import RequestsScreen from "./src/screens/RequestsScreen";
+import NewRequest from "./src/screens/NewRequest";
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ const screens = [
   { name: "SignUp", component: SignUpScreen },
   { name: "Login", component: LoginScreen },
   { name: "Requests", component: RequestsScreen },
+  { name: "NewRequest", component: NewRequest },
 ];
 
 LogBox.ignoreLogs(["Setting a timer for a long period of"]);

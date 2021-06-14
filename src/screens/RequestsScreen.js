@@ -43,6 +43,12 @@ export default function RequestsScreen({navigation}) {
       >
         <Text>Back to Login</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        styles={{ color: "black" }}
+        onPress={() => navigation.navigate("NewRequest")}
+      >
+        <Text>New Request</Text>
+      </TouchableOpacity>
       <Text>
       <FlatList
         data={requests}
@@ -51,6 +57,7 @@ export default function RequestsScreen({navigation}) {
         keyExtractor={(item) => item.id.toString()}
       />
       </Text>
+      
     </Screen>
   );
 }
