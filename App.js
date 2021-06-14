@@ -9,6 +9,7 @@ import MainScreen from './src/screens/MainScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import LoadingScreen from './src/screens/LoadingScreen';
+import RequestsScreen from './src/screens/RequestsScreen';
 
 import firebase from './api/firebase';
 
@@ -19,6 +20,7 @@ const screens = [
   { name: "SignUp", component: SignUpScreen },
   { name: "Login", component: LoginScreen },
   { name: "Main", component: MainScreen },
+  { name: "Requests", component: RequestsScreen }
 ];
 
 LogBox.ignoreLogs(["Setting a timer for a long period of"]);
