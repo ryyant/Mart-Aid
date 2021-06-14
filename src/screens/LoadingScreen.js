@@ -16,7 +16,7 @@ export default ({ navigation }) => {
   
     return (
         <Screen style={styles.screen}>
-            <Image style={styles.logo} source={require('../../assets/duckymomo.png')}></Image>
+            <Image style={styles.logo} source={require('../../assets/Logo.png')}></Image>
             <ActivityIndicator animating size="large" color="black" />
         </Screen>
     );

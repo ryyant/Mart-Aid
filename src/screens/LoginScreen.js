@@ -34,7 +34,7 @@ export default ({ navigation }) => {
     return (
         <Screen scrollable style={styles.container}>
             
-            <Image style={styles.logo} source={require('../../assets/duckymomo.png')}></Image>
+            <Image style={styles.logo} source={require('../../assets/Logo.png')}></Image>
             
             <View style={styles.textContainer}>
                 <Text style={styles.font}>
@@ -70,22 +70,23 @@ export default ({ navigation }) => {
             </View>
 
             <TouchableOpacity 
-            style={styles.loginButtonFinal}
+            style={styles.button}
             onPress={handleLogin}
             loading={isLoginLoading}
             disabled={isLoginLoading}
             >
-                <Image source={require('../../assets/login-button-final.png')}></Image>
+            <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
 
             <View style={styles.signUpContainer}>
                 <Text style={styles.signUpText}>Don't have an account?</Text>
 
                 <TouchableOpacity 
-                style={styles.signUpButton}
+                style={styles.button}
                 onPress={() => navigation.navigate("SignUp")}
                 >
-                    <Image source={require('../../assets/sign-up-button.png')}></Image>
+                <Text style={styles.buttonText}>Register</Text>
+
                 </TouchableOpacity>
             </View>
 
@@ -95,7 +96,7 @@ export default ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fffdf1',
+        backgroundColor: '#defcf9',
         flex: 1,
     },
     font: {
@@ -110,16 +111,19 @@ const styles = StyleSheet.create({
         borderColor: "#d0d0d0",
     },
     logo: {
+        height: '40%',
         resizeMode: 'center',
         alignSelf: 'center'
     },
-    loginButtonFinal: {
-        transform: [{scale: 0.5}],
+    button: {
         alignItems: 'center',
+        backgroundColor: 'black'
     },
-    signUpButton: {
-        transform: [{scale: 0.5}],
+
+    buttonText: {
+        color: 'white'
     },
+
     signUpContainer: {
         alignItems: 'center',
     },

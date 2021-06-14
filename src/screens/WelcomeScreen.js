@@ -5,7 +5,7 @@ export default function WelcomeScreen() {
     return (
         <View style={styles.container}>
 
-            <Image style={styles.logo} source={require('../../assets/duckymomo.png')}></Image>
+            <Image style={styles.logo} source={require('../../assets/Logo.png')}></Image>
             
             <TouchableOpacity style={styles.loginButton}>
                 <Image source={require('../../assets/login-button.png')}></Image>

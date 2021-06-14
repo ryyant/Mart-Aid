@@ -35,7 +35,7 @@ export default ({ navigation }) => {
     return (
         <Screen scrollable style={styles.container}>
 
-            <Image style={styles.logo} source={require('../../assets/duckymomo.png')}></Image>
+            <Image style={styles.logo} source={require('../../assets/Logo.png')}></Image>
 
             <View style={styles.textContainer}>
 
