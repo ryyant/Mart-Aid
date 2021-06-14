@@ -11,8 +11,6 @@ import WelcomeScreen from './src/screens/WelcomeScreen';
 import LoadingScreen from './src/screens/LoadingScreen';
 import RequestsScreen from './src/screens/RequestsScreen';
 
-import firebase from './api/firebase';
-
 const Stack = createStackNavigator();
 
 const screens = [
@@ -35,9 +33,5 @@ export default function App() {
       </NavigationContainer>
     </PaperProvider>
   );
-  
-  // return (
-  //   <SignUpScreen />
-  // );
 }
 
