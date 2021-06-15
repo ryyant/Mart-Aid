@@ -4,7 +4,6 @@ import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Screen from "../components/Screen";
 
-
 export default function NewRequest() {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
@@ -46,17 +45,28 @@ export default function NewRequest() {
 
   return (
     <Screen styles = {styles.container}>  
-    <View >
-      <Text > New Request </Text>
-      <View>
-        <TextInput 
-          placeholder="Name" />
+    <View style = {{backgroundColor:'#c3bef0'}}>
+      <Text style = {styles.header}> New Request </Text>
+    </View>
+    <View>
+        <Text>
+            Name
+        </Text>
+        <TextInput
+          placeholder="Name" 
+          style={styles.input}
+        />
+        <Text>
+            Address
+        </Text>
         <TextInput
           placeholder="Address"
+          style={styles.input}
         />
-        <View>
-        <Button onPress={showDatepicker} title="Delivered by?" />
-        </View>
+    </View>
+    <View style={styles.textContainer}>
+        <Button onPress={showDatepicker} title="Delivered by?" style= {styles.textContainer}/>
+    </View>
         {show && (
         <DateTimePicker
           testID="dateTimePicker"
@@ -67,8 +77,9 @@ export default function NewRequest() {
           onChange={onChange}
         />
         )}
-        </View>
-      </View>
+    <Text>
+        Shopping List
+    </Text>
   </Screen>
   );
 }
@@ -78,8 +89,11 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "#fffdf1",
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+        fontSize:30,
+        fontFamily: 'Avenir'
       },
       header: {
           color:'#defcf9',
@@ -88,5 +102,12 @@ const styles = StyleSheet.create({
           alignSelf: 'center',
           fontFamily: 'Avenir',
           padding: 10
+      },
+      textContainer: {
+          color: "#000000",
+          alignSelf: 'flex-start',
+          fontFamily: 'Avenir',
+          padding: 10,
+          fontSize:10
       }
 });
