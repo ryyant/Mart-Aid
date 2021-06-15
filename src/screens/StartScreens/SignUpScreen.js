@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 import { TextInput } from "react-native-paper";
-import HideKeyboard from '../../components/HideKeyboard';
-import Screen from '../../components/Screen';
+import HideKeyboard from "../../components/HideKeyboard";
+import Screen from "../../components/Screen";
 
 import * as Authentication from "../../../api/auth";
 import { Merriweather_400Regular } from "@expo-google-fonts/merriweather";
@@ -52,7 +52,7 @@ export default ({ navigation }) => {
       <Screen style={styles.container}>
         <Image
           style={styles.logo}
-          source={require('../../../assets/Logo.png')}
+          source={require("../../../assets/Logo.png")}
         ></Image>
 
         <View style={styles.textContainer}>
@@ -118,10 +118,7 @@ export default ({ navigation }) => {
             }
           />
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleRegister}
-          >
+          <TouchableOpacity style={styles.button} onPress={handleRegister}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
 
@@ -139,58 +136,56 @@ export default ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#C3BEF0',
+    backgroundColor: "#C3BEF0",
     flex: 1,
   },
 
   input: {
     height: 50,
-    width: '80%',
-    backgroundColor: 'white',
+    width: "80%",
+    backgroundColor: "white",
     marginBottom: 20,
     fontSize: 15,
-    opacity: 0.85
-},
+    opacity: 0.85,
+  },
 
-logo: {
-  position: 'absolute',
-  top: 135,
-  left: 190,
-  width: '90%',
-  height: '45%',
-  alignSelf: 'center',
-},
+  logo: {
+    position: "absolute",
+    top: 135,
+    left: 190,
+    width: "90%",
+    height: "45%",
+    alignSelf: "center",
+  },
 
-logoName: {
-marginTop: 200,
-marginHorizontal: 40,
-paddingBottom: 10,
-fontSize: 50,
-fontFamily: 'AvenirNext-Bold',
-alignSelf: 'flex-start',
-},
+  logoName: {
+    marginTop: "50%",
+    marginHorizontal: 40,
+    paddingBottom: 10,
+    fontSize: 50,
+    fontFamily: "AvenirNext-Bold",
+    alignSelf: "flex-start",
+  },
 
   textContainer: {
     alignItems: "center",
   },
 
   buttonText: {
-    color: 'white',
-    fontFamily: 'Avenir',
-    fontWeight: '600',
-    fontSize: 18
-
-},
+    color: "white",
+    fontFamily: "Avenir",
+    fontWeight: "600",
+    fontSize: 18,
+  },
 
   button: {
-    alignItems: 'center',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#0c4271' ,
-    width: '80%',
-    height: '7%',
+    alignItems: "center",
+    alignSelf: "center",
+    justifyContent: "center",
+    backgroundColor: "#0c4271",
+    width: "80%",
+    height: "7%",
     borderRadius: 5,
     marginBottom: 15,
-
-},
+  },
 });

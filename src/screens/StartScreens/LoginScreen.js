@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
 
   logoName: {
-    marginTop: 250,
+    marginTop: "60%",
     marginHorizontal: 40,
     paddingBottom: 10,
     fontSize: 60,
