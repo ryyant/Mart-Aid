@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import {Text, StyleSheet, View, TextInput, Button} from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import {Text, StyleSheet, View, TextInput, Button, TouchableOpacity, } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Screen from "../components/Screen";
 
-export default function NewRequest() {
+export default function NewRequest({navigation}) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -45,6 +44,12 @@ export default function NewRequest() {
 
   return (
     <Screen styles = {styles.container}>  
+    <TouchableOpacity
+        styles={{ color: "black" }}
+        onPress={() => navigation.navigate("Requests")}
+      >
+        <Text>Back to Requests</Text>
+      </TouchableOpacity>
     <View style = {{backgroundColor:'#c3bef0'}}>
       <Text style = {styles.header}> New Request </Text>
     </View>
