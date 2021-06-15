@@ -70,10 +70,12 @@ export default function RequestsScreen({ navigation }) {
   }
 
   return (
+    <>
+    <View style={{ backgroundColor: "#c3bef0", paddingTop:45 }}>
+    <Text style={styles.header}>Requests</Text>
+  </View>
     <Screen style={styles.container}>
-      <View style={{ backgroundColor: "#c3bef0" }}>
-        <Text style={styles.header}>Requests</Text>
-      </View>
+
         <ScrollView>
           <Text>
             <FlatList
@@ -94,6 +96,7 @@ export default function RequestsScreen({ navigation }) {
           </TouchableOpacity>
         </View>
     </Screen>
+    </>
   );
 }
 
