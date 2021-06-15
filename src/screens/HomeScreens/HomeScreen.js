@@ -3,13 +3,8 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
   TouchableOpacity,
-  Image,
   FlatList,
-  Header,
-  Button,
-  ListFooterComponent,
   ScrollView,
 } from "react-native";
 import Screen from "../../components/Screen";
@@ -19,7 +14,7 @@ import SecondIcon from 'react-native-vector-icons/Entypo'
 
 const db = firebase.firestore().collection("requests");
 
-export default function RequestsScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
@@ -33,18 +28,6 @@ export default function RequestsScreen({ navigation }) {
     };
   }, []);
 
-  /*   useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => <Button title="Add" />,
-    });
-  }) */
-
-  /*   const requests = [
-    { title: "Request1", id: "0" },
-    { title: "Request2", id: "1" },
-    { title: "Request3", id: "2" },
-  ]; */
-
   function renderItem({ item }) {
     return (
       <View style={styles.request}>
@@ -52,6 +35,10 @@ export default function RequestsScreen({ navigation }) {
           style={{
             width: "100%",
           }}
+          onPress={() => {
+            navigation.navigate("Request")
+          }
+          }
         >
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
