@@ -3,7 +3,6 @@ import {Alert, Modal, Pressable, Text, StyleSheet, View, TextInput, Button, Touc
 import Screen from '../../components/Screen';
 import { AntDesign } from '@expo/vector-icons'; 
 
-
 export default function NewRequest({navigation}) {
 
   const SAMPLE = [
@@ -32,23 +31,11 @@ export default function NewRequest({navigation}) {
     );
   }
 
-  function AddScreen() {
-
-  }
-
 
   return (
     <Screen styles = {styles.container}>  
-    <View style = {{backgroundColor:'#c3bef0'}}>
-      <TouchableOpacity onPress={() => navigation.navigate("Requests")} style={{flexDirection:"row",alignItems:'center',justifyContent:'center'}}>
-        <AntDesign 
-        name="leftcircleo" 
-        size={25}  
-        color="black"
-        style={{ marginLeft: 10, paddingTop: 10, flex: 2}}
-        />
+    <View style = {{backgroundColor:'#c3bef0', paddingTop:45}}>
         <Text style = {styles.header}> New Request </Text>
-      </TouchableOpacity>
     </View>
 
     <View>
@@ -145,6 +132,7 @@ export default function NewRequest({navigation}) {
     <View style={styles.list}>
       <FlatList data={SAMPLE} renderItem={renderItem} />
     </View>
+
   </Screen>
   );
 }
@@ -161,13 +149,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Avenir'
       },
       header: {
-          color:'#defcf9',
-          fontWeight:'bold',
-          fontSize: 35,
-          alignSelf: 'center',
-          fontFamily: 'Avenir',
-          padding: 10,
-          flex: 10,
+        color: "#defcf9",
+        fontWeight: "bold",
+        fontSize: 40,
+        alignSelf: "center",
+        fontFamily: "Avenir",
+        padding: 10,
       },
       textContainer: {
           color: "black",

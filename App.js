@@ -10,6 +10,7 @@ import SignUpScreen from "./src/screens/StartScreens/SignUpScreen";
 import LoadingScreen from "./src/screens/StartScreens/LoadingScreen";
 import BottomBar from "./src/components/BottomBar";
 
+
 import { useFonts, Merriweather_700Bold, Merriweather_400Regular } from '@expo-google-fonts/merriweather';
 
 const Stack = createStackNavigator();
