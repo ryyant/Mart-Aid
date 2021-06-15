@@ -12,6 +12,7 @@ export default function NewRequest({navigation}) {
   ];
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [todoText, setTodoText] = useState("");
 
   function renderItem({ item }) {
     return (
@@ -83,11 +84,12 @@ export default function NewRequest({navigation}) {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Add new item!</Text>
+            <Text style={styles.modalTitle}>Add new item!</Text>
             <Text style={styles.modalText}>
                Item Name:
             </Text>
             <TextInput
+              onChangeText={(text) => setTodoText(text)}
               placeholder="e.g.Milk" 
               style={styles.modalText}
             />
@@ -119,6 +121,14 @@ export default function NewRequest({navigation}) {
             >
               <Text style={styles.textStyle}>Done</Text>
             </Pressable>
+
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Cancel</Text>
+            </Pressable>
+
           </View>
         </View>
       </Modal>
@@ -129,6 +139,7 @@ export default function NewRequest({navigation}) {
         <Text style={styles.textStyle}>Add new Item!</Text>
       </Pressable>
     </View>
+    
 
 
     <View style={styles.list}>
@@ -191,7 +202,7 @@ const styles = StyleSheet.create({
         margin: 20,
         backgroundColor: "white",
         borderRadius: 20,
-        padding: 35,
+        padding: 40,
         alignItems: "center",
         shadowColor: "#000",
         position: 'absolute',
@@ -207,7 +218,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 14,
         elevation: 2,
-   
+        margin: 5,
       },
       buttonOpen: {
         backgroundColor: "#CADEFC",
@@ -226,7 +237,14 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "black"
       },
+      modalTitle: {
+        marginBottom: 15,
+        textAlign: "center",
+        color: "black",
+        fontSize: 20,
+      },
       list: {
+        paddingTop: 10,
         width: "100%",
       },
 });
