@@ -1,29 +1,17 @@
 import React, {useState} from 'react';
-import {Text, StyleSheet, View, TextInput, Button, TouchableOpacity, } from 'react-native';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import {Alert, Modal, Pressable, Text, StyleSheet, View, TextInput, Button, TouchableOpacity, FlatList } from 'react-native';
 import Screen from '../../components/Screen';
 import { AntDesign } from '@expo/vector-icons'; 
 
+
 export default function NewRequest({navigation}) {
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-  };
+  const SAMPLE = [
+    {title: "Milk Meji 1L x1", id: "0", done: false},
+    {title: "Mala Chips Calbee 500g x2", id: "1", done: false},
+  ];
 
-  const showMode = (currentMode) => {
-    setShow(true);
-    setMode(currentMode);
-  };
-
-  const showDatepicker = () => {
-    showMode('date');
-  };
-
+  const [modalVisible, setModalVisible] = useState(false);
 
   function renderItem({ item }) {
     return (
@@ -43,61 +31,109 @@ export default function NewRequest({navigation}) {
     );
   }
 
+  function AddScreen() {
+
+  }
+
+
   return (
     <Screen styles = {styles.container}>  
     <View style = {{backgroundColor:'#c3bef0'}}>
-      <TouchableOpacity onPress={() => navigation.navigate("Main")} style={{flexDirection:"row",alignItems:'center',justifyContent:'center'}}>
+      <TouchableOpacity onPress={() => navigation.navigate("Requests")} style={{flexDirection:"row",alignItems:'center',justifyContent:'center'}}>
         <AntDesign 
         name="leftcircleo" 
-        size={30}  
+        size={25}  
         color="black"
         style={{ marginLeft: 10, paddingTop: 10, flex: 2}}
         />
         <Text style = {styles.header}> New Request </Text>
       </TouchableOpacity>
-      
-      
     </View>
+
     <View>
         <Text style={styles.title}>
-            Name
+            Name :
         </Text>
         <TextInput
           placeholder="Name" 
           style={styles.input}
         />
         <Text style={styles.title}>
-            Address
+            Address :
         </Text>
         <TextInput 
           placeholder="Address"
           style={styles.input}
         />
     </View>
-    <Text style={styles.title}>
-            Delivered By?
-        </Text>
-    <View style={styles.textContainer}>
-        <Button style={styles.button}
-        onPress={showDatepicker} 
-        title="Select Date"
 
-         />
-    </View>
-        {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-          textColor="black"
-        />
-        )}
     <Text style={styles.title}>
-        Shopping List
-    </Text>
+        Shopping List :
+    </Text>    
+
+    <View style={styles.centeredView}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Add new item!</Text>
+            <Text style={styles.modalText}>
+               Item Name:
+            </Text>
+            <TextInput
+              placeholder="e.g.Milk" 
+              style={styles.modalText}
+            />
+            <Text style={styles.modalText}>
+               Brand Name:
+            </Text>
+            <TextInput
+              placeholder="e.g. Meji" 
+              style={styles.modalText}
+            />
+             <Text style={styles.modalText}>
+               Item Size:
+            </Text>
+            <TextInput
+              placeholder="e.g 1L/500g/1 packet" 
+              style={styles.modalText}
+            />
+             <Text style={styles.modalText}>
+               Quantity:
+            </Text>
+            <TextInput
+              placeholder="e.g. 3" 
+              style={styles.modalText}
+            />
+
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Done</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setModalVisible(true)}
+      >
+        <Text style={styles.textStyle}>Add new Item!</Text>
+      </Pressable>
+    </View>
+
+
+    <View style={styles.list}>
+      <FlatList data={SAMPLE} renderItem={renderItem} />
+    </View>
   </Screen>
   );
 }
@@ -114,7 +150,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Avenir'
       },
       header: {
-          color:'#150E56',
+          color:'#defcf9',
           fontWeight:'bold',
           fontSize: 35,
           alignSelf: 'center',
@@ -123,7 +159,7 @@ const styles = StyleSheet.create({
           flex: 10,
       },
       textContainer: {
-          color: "#000000",
+          color: "black",
           alignSelf: 'flex-start',
           fontFamily: 'Avenir',
           padding: 10,
@@ -134,7 +170,7 @@ const styles = StyleSheet.create({
       title: {
           color: '#150E56',
           fontWeight: 'bold',
-          fontSize: 18,
+          fontSize: 15,
           padding:10,
           paddingBottom: 5,
           paddingTop: 20,
@@ -144,10 +180,53 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Avenir',
         paddingLeft: 10,
-
+      },
+      centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 20
+      },
+      modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        position: 'absolute',
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
       },
       button: {
-          color: 'black',
-          paddingLeft: 10,
-      }
+        borderRadius: 20,
+        padding: 14,
+        elevation: 2,
+   
+      },
+      buttonOpen: {
+        backgroundColor: "#CADEFC",
+        position: 'absolute',
+      },
+      buttonClose: {
+        backgroundColor: "#CADEFC",
+      },
+      textStyle: {
+        color: "black",
+        fontWeight: "bold",
+        textAlign: "center"
+      },
+      modalText: {
+        marginBottom: 15,
+        textAlign: "center",
+        color: "black"
+      },
+      list: {
+        width: "100%",
+      },
 });
