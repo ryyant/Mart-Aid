@@ -3,11 +3,12 @@ import { SafeAreaView, StyleSheet, StatusBar, View, Text } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import YourListingScreen from "../screens/ProfileScreens/YourListingScreen";
 import AcceptedListingScreen from "../screens/ProfileScreens/AcceptedListingScreen";
+import Screen from '../components/Screen'
 
 const profileStack = createMaterialTopTabNavigator();
 export default () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <Screen style={styles.container}>
       <View style={{ backgroundColor: "#c3bef0" }}>
         <Text style={styles.header}>Profile</Text>
       </View>
@@ -23,7 +24,7 @@ export default () => {
           options={{ tabBarLabel: "Accepted Listings" }}
         />
       </profileStack.Navigator>
-    </SafeAreaView>
+    </Screen>
   );
 };
 
