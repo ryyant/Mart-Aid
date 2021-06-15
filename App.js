@@ -9,6 +9,8 @@ import LoginScreen from "./src/screens/LoginScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import LoadingScreen from "./src/screens/LoadingScreen";
 import RequestsScreen from "./src/screens/RequestsScreen";
+import NewRequest from "./src/screens/NewRequest";
+import BottomBar from "./src/components/BottomBar";
 
 import { useFonts, Merriweather_700Bold, Merriweather_400Regular } from '@expo-google-fonts/merriweather';
 
@@ -19,6 +21,8 @@ const screens = [
   { name: "SignUp", component: SignUpScreen },
   { name: "Login", component: LoginScreen },
   { name: "Requests", component: RequestsScreen },
+  { name: "NewRequest", component: NewRequest },
+  { name: "Main", component: BottomBar },
 ];
 
 LogBox.ignoreLogs(["Setting a timer for a long period of"]);

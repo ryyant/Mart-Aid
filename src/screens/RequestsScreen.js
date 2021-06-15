@@ -16,6 +16,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 const db = firebase.firestore().collection("requests");
 
+<<<<<<< HEAD
 export default function RequestsScreen({ navigation }) {
   const [requests, setRequests] = useState([]);
   const [notes, setNotes] = useState([]);
@@ -38,6 +39,10 @@ export default function RequestsScreen({ navigation }) {
   }) */
 
   /*   const requests = [
+=======
+export default function NewRequest({ navigation }) {
+  const requests = [
+>>>>>>> 9aa946fd974730733a2e8e871b32a45e48e60764
     { title: "Request1", id: "0" },
     { title: "Request2", id: "1" },
     { title: "Request3", id: "2" },
@@ -70,9 +75,19 @@ export default function RequestsScreen({ navigation }) {
       <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text>{backToLogin}</Text>
       </TouchableOpacity>
+<<<<<<< HEAD
       <View style={{ backgroundColor: "#c3bef0" }}>
         <Text style={styles.header}>Requests</Text>
       </View>
+=======
+      <TouchableOpacity
+        styles={{ color: "black" }}
+        onPress={() => navigation.navigate("NewRequest")}
+      >
+        <Text>New Request</Text>
+      </TouchableOpacity>
+      <View style = {{backgroundColor:'#c3bef0'}}><Text style = {styles.header}>Requests</Text></View>
+>>>>>>> 9aa946fd974730733a2e8e871b32a45e48e60764
       <Text>
         <FlatList
           data={requests}
