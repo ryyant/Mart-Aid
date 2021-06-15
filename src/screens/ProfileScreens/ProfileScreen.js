@@ -9,12 +9,11 @@ import {
   FlatList,
   Header,
 } from "react-native";
-import Screen from '../../components/Screen';
+import Screen from "../../components/Screen";
 
 export default function ({ navigation }) {
-
   return (
-    <Screen styles = {styles.container}>
+    <Screen styles={styles.container}>
       <Text>hello</Text>
     </Screen>
   );

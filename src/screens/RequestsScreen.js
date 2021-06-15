@@ -42,7 +42,6 @@ export default function RequestsScreen({ navigation }) {
     { title: "Request3", id: "2" },
   ]; */
 
-  const backToLogin = "< Back to Login";
 
   function renderItem({ item }) {
     return (
@@ -66,9 +65,6 @@ export default function RequestsScreen({ navigation }) {
 
   return (
     <Screen styles={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <Text>{backToLogin}</Text>
-      </TouchableOpacity>
       <View style={{ backgroundColor: "#c3bef0" }}>
         <Text style={styles.header}>Requests</Text>
       </View>
