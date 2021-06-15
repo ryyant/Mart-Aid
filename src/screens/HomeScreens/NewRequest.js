@@ -11,11 +11,7 @@ import {
 } from "react-native";
 import Screen from "../../components/Screen";
 import HideKeyboard from "../../components/HideKeyboard";
-<<<<<<< HEAD
 import Icon from "react-native-vector-icons/FontAwesome";
-=======
-import Icon from 'react-native-vector-icons/AntDesign'
->>>>>>> 96a1f1b6580c51314e4124e0133f31c68f5b6f8d
 
 export default function NewRequest({ navigation }) {
   const SAMPLE = [
@@ -124,7 +120,6 @@ export default function NewRequest({ navigation }) {
               style={styles.button}
               onPress={() => setModalVisible(true)}
             >
-<<<<<<< HEAD
               <Text style={styles.textStyle}>Add Item</Text>
             </TouchableOpacity>
 
@@ -143,13 +138,6 @@ export default function NewRequest({ navigation }) {
               />
               <Text style={styles.textStyle}>LIST IT!</Text>
             </TouchableOpacity>
-=======
-              <Text style={styles.textStyle}><Icon name="pluscircle" size={16} color="black" />  Add new Item!</Text>
-            </Pressable>
-          </View>
-          <View style={styles.list}>
-            <FlatList data={SAMPLE} renderItem={renderItem} />
->>>>>>> 96a1f1b6580c51314e4124e0133f31c68f5b6f8d
           </View>
         </Screen>
       </HideKeyboard>
