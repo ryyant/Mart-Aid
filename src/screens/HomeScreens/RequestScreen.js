@@ -13,7 +13,8 @@ import {
 } from "react-native";
 import Screen from "../../components/Screen";
 import HideKeyboard from "../../components/HideKeyboard";
-import Icon from 'react-native-vector-icons/AntDesign'
+import Icon from "react-native-vector-icons/FontAwesome";
+
 
 export default function Request({ navigation }) {
   const SAMPLE = [
@@ -46,13 +47,14 @@ export default function Request({ navigation }) {
 
   return (
     <>
-      <View style={{ backgroundColor: "#c3bef0", paddingTop: 55 }}>
-        <TouchableOpacity
+      <View style={{ backgroundColor: "#c3bef0", paddingTop: "14%" }}>
+      <TouchableOpacity
+          style={styles.backButton}
           onPress={() => {
             navigation.goBack();
           }}
         >
-          <Text style={styles.backbutton}>{backToRequests}</Text>
+          <Icon name="chevron-left" size={25} color="black" />
         </TouchableOpacity>
         <Text style={styles.header}> Request </Text>
       </View>
@@ -79,16 +81,17 @@ export default function Request({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fffdf1",
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    fontSize: 30,
-    fontFamily: "Avenir",
   },
+
+  backButton: {
+    position: "absolute",
+    top: "110%",
+    left: "3%",
+  },
+
   header: {
-    color: "#defcf9",
+    color: "black",
     fontWeight: "bold",
     fontSize: 40,
     alignSelf: "center",

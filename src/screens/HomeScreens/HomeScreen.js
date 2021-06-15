@@ -9,7 +9,8 @@ import {
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
-import SecondIcon from 'react-native-vector-icons/Entypo'
+import SecondIcon from 'react-native-vector-icons/Entypo';
+import SearchBar from "../../components/SearchBar";
 
 const db = firebase.firestore().collection("requests");
 
@@ -61,6 +62,7 @@ export default function HomeScreen({ navigation }) {
     <Text style={styles.header}>Requests</Text>
   </View>
     <Screen style={styles.container}>
+      <SearchBar/>
         <View style={{flex: 1}}>
             <FlatList
               data={requests}
