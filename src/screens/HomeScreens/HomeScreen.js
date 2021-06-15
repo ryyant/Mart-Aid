@@ -3,13 +3,8 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
   TouchableOpacity,
-  Image,
   FlatList,
-  Header,
-  Button,
-  ListFooterComponent,
   ScrollView,
 } from "react-native";
 import Screen from "../../components/Screen";
@@ -19,7 +14,7 @@ import SecondIcon from 'react-native-vector-icons/Entypo'
 
 const db = firebase.firestore().collection("requests");
 
-export default function RequestsScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
@@ -33,18 +28,6 @@ export default function RequestsScreen({ navigation }) {
     };
   }, []);
 
-  /*   useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => <Button title="Add" />,
-    });
-  }) */
-
-  /*   const requests = [
-    { title: "Request1", id: "0" },
-    { title: "Request2", id: "1" },
-    { title: "Request3", id: "2" },
-  ]; */
-
   function renderItem({ item }) {
     return (
       <View style={styles.request}>
@@ -52,6 +35,10 @@ export default function RequestsScreen({ navigation }) {
           style={{
             width: "100%",
           }}
+          onPress={() => {
+            navigation.navigate("Request")
+          }
+          }
         >
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -70,10 +57,12 @@ export default function RequestsScreen({ navigation }) {
   }
 
   return (
+    <>
+    <View style={{ backgroundColor: "#c3bef0", paddingTop:45 }}>
+    <Text style={styles.header}>Requests</Text>
+  </View>
     <Screen style={styles.container}>
-      <View style={{ backgroundColor: "#c3bef0" }}>
-        <Text style={styles.header}>Requests</Text>
-      </View>
+
         <ScrollView>
           <Text>
             <FlatList
@@ -84,7 +73,7 @@ export default function RequestsScreen({ navigation }) {
             />
           </Text>
         </ScrollView>
-        <View>
+        <View > 
           <TouchableOpacity
             style={styles.footer}
             onPress={addRequest}
@@ -94,6 +83,7 @@ export default function RequestsScreen({ navigation }) {
           </TouchableOpacity>
         </View>
     </Screen>
+    </>
   );
 }
 
@@ -131,10 +121,10 @@ const styles = StyleSheet.create({
     borderColor: "rgba(0,0,0,0.2)",
     alignItems: "center",
     justifyContent: "center",
-    width: 165,
+    width: 168,
     position: "absolute",
     bottom: 10,
-    right: 20,
+    left:99,
     height: 70,
     backgroundColor: "#fff",
     borderRadius: 40,

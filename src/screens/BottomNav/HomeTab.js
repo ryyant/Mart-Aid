@@ -1,15 +1,16 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import RequestsScreen from "../HomeScreens/RequestsScreen";
+import HomeScreen from "../HomeScreens/HomeScreen";
 import NewRequestSc from "../HomeScreens/NewRequest";
-
+import RequestScreen from '../HomeScreens/RequestScreen';
 
 const homeStack = createStackNavigator();
 
 const screens = [
-  { name: "Requests", component: RequestsScreen },
-  { name: "New Request", component: NewRequestSc}
+  { name: "Home", component: HomeScreen },
+  { name: "New Request", component: NewRequestSc},
+  { name: 'Request', component: RequestScreen }
 ];
 
 export default () => {

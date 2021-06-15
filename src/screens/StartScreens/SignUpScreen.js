@@ -9,8 +9,8 @@ import {
 } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 import { TextInput } from "react-native-paper";
-import HideKeyboard from '../../components/HideKeyboard';
-import Screen from '../../components/Screen';
+import HideKeyboard from "../../components/HideKeyboard";
+import Screen from "../../components/Screen";
 
 import * as Authentication from "../../../api/auth";
 import { Merriweather_400Regular } from "@expo-google-fonts/merriweather";
@@ -49,14 +49,14 @@ export default ({ navigation }) => {
 
   return (
     <HideKeyboard>
-      <Screen scrollable style={styles.container}>
+      <Screen style={styles.container}>
         <Image
           style={styles.logo}
-          source={require('../../../assets/Logo.png')}
+          source={require("../../../assets/Logo.png")}
         ></Image>
 
         <View style={styles.textContainer}>
-          <Text style={styles.registerText}>Register a New Account</Text>
+          <Text style={styles.logoName}>Register.</Text>
 
           <TextInput
             label="Your name"
@@ -118,15 +118,12 @@ export default ({ navigation }) => {
             }
           />
 
-          <TouchableOpacity
-            style={styles.signUpButton}
-            onPress={handleRegister}
-          >
+          <TouchableOpacity style={styles.button} onPress={handleRegister}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.backToLoginButton}
+            style={styles.button}
             onPress={() => navigation.navigate("Login")}
           >
             <Text style={styles.buttonText}>Back to Login</Text>
@@ -139,76 +136,56 @@ export default ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f9dfdc",
+    backgroundColor: "#C3BEF0",
     flex: 1,
   },
 
   input: {
     height: 50,
-    width: "90%",
+    width: "80%",
     backgroundColor: "white",
+    marginBottom: 20,
     fontSize: 15,
-    marginTop: 20,
-  },
-
-  font: {
-    fontSize: 20,
-    paddingTop: 15,
-    paddingBottom: 5,
-    marginLeft: 20,
-    fontFamily: "Merriweather_400Regular",
-    fontSize: 18,
-    alignSelf: "flex-start",
-  },
-
-  loginButton: {
-    transform: [{ scale: 0.5 }],
+    opacity: 0.85,
   },
 
   logo: {
-    marginTop: 70,
-    height: "40%",
-    resizeMode: "contain",
+    position: "absolute",
+    top: 135,
+    left: 190,
+    width: "90%",
+    height: "45%",
     alignSelf: "center",
   },
 
-  registerText: {
-    fontSize: 30,
-    fontFamily: 'AvenirNext-Bold',
-    alignSelf: "center",
-    color: "black",
+  logoName: {
+    marginTop: "50%",
+    marginHorizontal: 40,
+    paddingBottom: 10,
+    fontSize: 50,
+    fontFamily: "AvenirNext-Bold",
+    alignSelf: "flex-start",
   },
 
-  signUpButton: {
-    transform: [{ scale: 0.5 }],
-  },
   textContainer: {
     alignItems: "center",
   },
 
   buttonText: {
     color: "white",
+    fontFamily: "Avenir",
+    fontWeight: "600",
     fontSize: 18,
-    fontFamily: "Merriweather_400Regular",
   },
 
-  backToLoginButton: {
-    padding: 20,
-    marginTop: 25,
+  button: {
     alignItems: "center",
     alignSelf: "center",
+    justifyContent: "center",
     backgroundColor: "#0c4271",
-    width: "50%",
-    borderRadius: 55,
-  },
-
-  signUpButton: {
-    padding: 20,
-    marginTop: 25,
-    alignItems: "center",
-    alignSelf: "center",
-    backgroundColor: "#0c4271",
-    width: "38%",
-    borderRadius: 55,
+    width: "80%",
+    height: "7%",
+    borderRadius: 5,
+    marginBottom: 15,
   },
 });

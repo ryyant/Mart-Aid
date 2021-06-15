@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         resizeMode: "center"
     },
     screen: {
-        backgroundColor: '#f9dfdc',
+        backgroundColor: '#C3BEF0',
         justifyContent: "center",
         alignItems: 'center',
         flex: 1
