@@ -41,8 +41,8 @@ export default function ({ navigation }) {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={{ fontSize: 20, width: "90%" }}>List</Text>
-            <Icon name="cart-arrow-down" size={30} color="black" />
+            <Text style={{ fontSize: 20, width: "90%" }}>{item.address}</Text>
+            <Icon name="angle-double-right" size={30} color="black" />
           </View>
           <Text>{item.name}</Text>
         </TouchableOpacity>
