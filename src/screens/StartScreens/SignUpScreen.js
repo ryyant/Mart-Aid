@@ -151,8 +151,8 @@ const styles = StyleSheet.create({
 
   logo: {
     position: "absolute",
-    top: 135,
-    left: 190,
+    top: "15%",
+    left: "50%",
     width: "90%",
     height: "45%",
     alignSelf: "center",
