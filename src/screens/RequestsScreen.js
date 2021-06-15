@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -8,10 +8,17 @@ import {
   Image,
   FlatList,
   Header,
+  Button
 } from "react-native";
 import Screen from "../components/Screen";
 
 export default function RequestsScreen({ navigation }) {
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <Button title="Add" />,
+    });
+  });
+
   const requests = [
     { title: "Request1", id: "0" },
     { title: "Request2", id: "1" },
@@ -31,20 +38,21 @@ export default function RequestsScreen({ navigation }) {
           justifyContent: "space-between",
         }}
       >
-        <Text>{item.title}</Text>
+        <Text style={{ fontSize: 20, width: "80%" }}>{item.title}</Text>
       </View>
     );
   }
 
   return (
-    <Screen styles = {styles.container}>
+    <Screen styles={styles.container}>
       <TouchableOpacity
-        styles={{ color: "black" }}
         onPress={() => navigation.navigate("Login")}
       >
-        <Text>Back to Login</Text>
+        <Text> Back to Login</Text>
       </TouchableOpacity>
-      <View style = {{backgroundColor:'#c3bef0'}}><Text style = {styles.header}>Requests</Text></View>
+      <View style={{ backgroundColor: "#c3bef0" }}>
+        <Text style={styles.header}>Requests</Text>
+      </View>
       <Text>
         <FlatList
           data={requests}
@@ -66,11 +74,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   header: {
-      color:'#defcf9',
-      fontWeight:'bold',
-      fontSize: 40,
-      alignSelf: 'center',
-      fontFamily: 'Avenir',
-      padding: 10
+    color: "#defcf9",
+    fontWeight: "bold",
+    fontSize: 40,
+    alignSelf: "center",
+    fontFamily: "Avenir",
+    padding: 10,
+  },
+  button: {
+    color: "#defcf9",
+    fontWeight: "bold",
+    fontSize: 40,
+    alignSelf: "center",
+    fontFamily: "Avenir",
+    padding: 10,
   }
 });
