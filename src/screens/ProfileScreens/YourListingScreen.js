@@ -3,19 +3,17 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  Header,
-  ScrollView,
+  FlatList
 } from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import { getCurrentUserId } from "../../../api/auth";
 
 const currentUser = getCurrentUserId();
-const docRef = firebase.firestore().collection("requests").doc(currentUser);
+if (currentUser == null) {
+  
+}
+const docRef = firebase.firestore().collection("requests").doc(getCurrentUserId());
 
 export default function ({ navigation }) {
   const [request, setRequest] = useState("");
@@ -23,7 +21,6 @@ export default function ({ navigation }) {
   useEffect(() => {
     const unsubscribe = docRef.onSnapshot((doc) => {
       const updatedRequest = doc.data();
-      console.log(doc.data());
       setRequest(updatedRequest);
     });
 
