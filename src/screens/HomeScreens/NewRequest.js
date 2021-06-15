@@ -2,18 +2,16 @@ import React, { useState } from "react";
 import {
   Alert,
   Modal,
-  Pressable,
   Text,
   StyleSheet,
   View,
   TextInput,
-  Button,
   TouchableOpacity,
   FlatList,
 } from "react-native";
 import Screen from "../../components/Screen";
-import { AntDesign } from "@expo/vector-icons";
 import HideKeyboard from "../../components/HideKeyboard";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function NewRequest({ navigation }) {
   const SAMPLE = [
@@ -26,49 +24,38 @@ export default function NewRequest({ navigation }) {
 
   function renderItem({ item }) {
     return (
-      <View
-        style={{
-          padding: 10,
-          paddingTop: 20,
-          paddingBottom: 20,
-          borderBottomColor: "black",
-          borderBottomWidth: 1,
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
+      <View style={styles.request}>
         <Text>{item.title}</Text>
       </View>
     );
   }
 
-  const backToRequests = "< Back to Requests";
-
   return (
     <>
-      <View style={{ backgroundColor: "#c3bef0", paddingTop: 55 }}>
+      <View style={{ backgroundColor: "#c3bef0", paddingTop: "14%" }}>
         <TouchableOpacity
+          style={styles.backButton}
           onPress={() => {
             navigation.goBack();
           }}
         >
-          <Text style={styles.backbutton}>{backToRequests}</Text>
+          <Icon name="chevron-left" size={25} color="black" />
         </TouchableOpacity>
-        <Text style={styles.header}> New Request </Text>
+        <Text style={styles.header}>New Request</Text>
       </View>
       <HideKeyboard>
-        <Screen styles={styles.container}>
+        <Screen style={styles.container}>
           <View>
-            <Text style={styles.title}>Name :</Text>
+            <Text style={styles.title}>Name:</Text>
             <TextInput placeholder="eg. Lim Kah Shing" style={styles.input} />
-            <Text style={styles.title}>Address :</Text>
+            <Text style={styles.title}>Address:</Text>
             <TextInput
               placeholder="eg. Yishun Ave 2 Blk 21 #04-51"
               style={styles.input}
             />
           </View>
 
-          <Text style={styles.title}>Shopping List :</Text>
+          <Text style={styles.title}>Shopping List:</Text>
 
           <View style={styles.centeredView}>
             <Modal
@@ -81,62 +68,76 @@ export default function NewRequest({ navigation }) {
               }}
             >
               <HideKeyboard>
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                  <Text style={styles.modalTitle}>Add new item!</Text>
-                  <Text style={styles.modalText}>Item Name:</Text>
-                  <TextInput
-                    onChangeText={(text) => setTodoText(text)}
-                    placeholder="e.g.Milk"
-                    placeholderTextColor="#B8BDBD"
-                    style={styles.modalText}
-                  />
-                  <Text style={styles.modalText}>Brand Name:</Text>
-                  <TextInput
-                    placeholder="e.g. Meji"
-                    placeholderTextColor="#B8BDBD"
-                    style={styles.modalText}
-                  />
-                  <Text style={styles.modalText}>Item Size:</Text>
-                  <TextInput
-                    placeholder="e.g 1L/500g/1 packet"
-                    style={styles.modalText}
-                    placeholderTextColor="#B8BDBD"
-                  />
-                  <Text style={styles.modalText}>Quantity:</Text>
-                  <TextInput
-                    placeholder="e.g. 3"
-                    placeholderTextColor="#B8BDBD"
-                    style={styles.modalText}
-                  />
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    <Text style={styles.modalTitle}>Add new item!</Text>
+                    <Text style={styles.modalText}>Item Name:</Text>
+                    <TextInput
+                      onChangeText={(text) => setTodoText(text)}
+                      placeholder="e.g. Milk"
+                      placeholderTextColor="#B8BDBD"
+                      style={styles.modalText}
+                    />
+                    <Text style={styles.modalText}>Brand Name:</Text>
+                    <TextInput
+                      placeholder="e.g. Meji"
+                      placeholderTextColor="#B8BDBD"
+                      style={styles.modalText}
+                    />
+                    <Text style={styles.modalText}>Item Size:</Text>
+                    <TextInput
+                      placeholder="e.g 1L/500g/1 packet"
+                      style={styles.modalText}
+                      placeholderTextColor="#B8BDBD"
+                    />
+                    <Text style={styles.modalText}>Quantity:</Text>
+                    <TextInput
+                      placeholder="e.g. 3"
+                      placeholderTextColor="#B8BDBD"
+                      style={styles.modalText}
+                    />
 
-                  <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}
-                  >
-                    <Text style={styles.textStyle}>Done</Text>
-                  </Pressable>
+                    <View style={{ flexDirection: "row" }}>
+                      <TouchableOpacity
+                        style={styles.modalButton}
+                        onPress={() => setModalVisible(!modalVisible)}
+                      >
+                        <Text style={styles.textStyle}>Cancel</Text>
+                      </TouchableOpacity>
 
-                  <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}
-                  >
-                    <Text style={styles.textStyle}>Cancel</Text>
-                  </Pressable>
+                      <TouchableOpacity
+                        style={styles.modalButton}
+                        onPress={() => setModalVisible(!modalVisible)}
+                      >
+                        <Text style={styles.textStyle}>Done</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
                 </View>
-              </View>
               </HideKeyboard>
             </Modal>
-            <Pressable
-              style={[styles.button, styles.buttonOpen]}
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => setModalVisible(true)}
             >
-              <Text style={styles.textStyle}>Add new Item!</Text>
-            </Pressable>
+              <Text style={styles.textStyle}>Add Item</Text>
+            </TouchableOpacity>
+
+            <View style={styles.list}>
+              <FlatList data={SAMPLE} renderItem={renderItem} />
+            </View>
           </View>
 
-          <View style={styles.list}>
-            <FlatList data={SAMPLE} renderItem={renderItem} />
+          <View>
+            <TouchableOpacity style={styles.footer} onPress={() => {}}>
+              <Icon
+                style={styles.icon}
+                name="cart-arrow-down"
+                size={23}
+                color="#676B6B"
+              />
+              <Text style={styles.textStyle}>LIST IT!</Text>
+            </TouchableOpacity>
           </View>
         </Screen>
       </HideKeyboard>
@@ -146,31 +147,34 @@ export default function NewRequest({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fffdf1",
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-    fontSize: 30,
-    fontFamily: "Avenir",
   },
+
+  backButton: {
+    position: "absolute",
+    top: "110%",
+    left: "3%",
+  },
+
   header: {
-    color: "#defcf9",
+    color: "black",
     fontWeight: "bold",
-    fontSize: 40,
+    fontSize: 35,
     alignSelf: "center",
     fontFamily: "Avenir",
     padding: 10,
   },
-  textContainer: {
-    color: "black",
-    alignSelf: "flex-start",
-    fontFamily: "Avenir",
+
+  request: {
     padding: 10,
-    paddingBottom: 5,
-    paddingTop: 5,
-    fontSize: 15,
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderBottomColor: "#CCA8E9",
+    borderBottomWidth: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
+
   title: {
     color: "#150E56",
     fontWeight: "bold",
@@ -180,22 +184,23 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     fontFamily: "Avenir",
   },
+
   input: {
     fontSize: 15,
     fontFamily: "Avenir",
     paddingLeft: 10,
   },
+
   centeredView: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
-    marginTop: 20,
   },
+
   modalView: {
-    margin: 20,
+    marginTop: "50%",
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 40,
+    paddingVertical: 40,
     alignItems: "center",
     shadowColor: "#000",
     position: "absolute",
@@ -207,42 +212,74 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+
+  list: {
+    flex: 1,
+    width: "100%",
+  },
+
   button: {
-    borderRadius: 20,
-    padding: 14,
-    elevation: 2,
-    margin: 5,
-  },
-  buttonOpen: {
+    marginVertical: 10,
     backgroundColor: "#CADEFC",
-    position: "absolute",
+    width: "80%",
+    height: "10%",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 15,
   },
-  buttonClose: {
+
+  modalButton: {
     backgroundColor: "#CADEFC",
+    width: "40%",
+    height: "40%",
+    alignItems: "center",
+    margin: 10,
+    justifyContent: "center",
+    borderRadius: 5,
   },
+
   textStyle: {
+    fontFamily: "Avenir",
     color: "black",
     fontWeight: "bold",
     textAlign: "center",
   },
+
   modalText: {
     marginBottom: 10,
     textAlign: "center",
     color: "black",
   },
+
   modalTitle: {
     marginBottom: 15,
     textAlign: "center",
     color: "black",
-    fontSize: 20,
-  },
-  list: {
-    paddingTop: 10,
-    width: "100%",
-  },
-  backbutton: {
-    fontSize: 15,
-    fontFamily: "Avenir",
     fontWeight: "bold",
+    fontSize: 25,
+  },
+
+  footer: {
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.2)",
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "80%",
+    position: "absolute",
+    bottom: 10,
+    height: 40,
+    backgroundColor: "#CADEFC",
+    borderRadius: 30,
+    color: "grey",
+    flexDirection: "row",
+    shadowColor: "rgba(0,0,0, .4)", // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 1, //IOS
+    elevation: 2, // Android
+  },
+  icon: {
+    paddingRight: 8,
   },
 });
