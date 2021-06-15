@@ -10,7 +10,7 @@ import {
   Header,
   Button,
 } from "react-native";
-import Screen from '../../components/Screen';
+import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -42,8 +42,6 @@ export default function RequestsScreen({ navigation }) {
     { title: "Request3", id: "2" },
   ]; */
 
-  const backToLogin = "< Back to Login";
-
   function renderItem({ item }) {
     return (
       <View style={styles.request}>
@@ -56,7 +54,7 @@ export default function RequestsScreen({ navigation }) {
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <Text style={{ fontSize: 20, width: "90%" }}>{item.address}</Text>
-            <Icon name="angle-double-right" size={30} color="#900" />
+            <Icon name="angle-double-right" size={30} color="black" />
           </View>
           <Text>{item.name}</Text>
         </TouchableOpacity>
@@ -66,20 +64,26 @@ export default function RequestsScreen({ navigation }) {
 
   return (
     <Screen styles={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <Text>{backToLogin}</Text>
-      </TouchableOpacity>
       <View style={{ backgroundColor: "#c3bef0" }}>
         <Text style={styles.header}>Requests</Text>
       </View>
-      <Text>
-        <FlatList
-          data={requests}
-          renderItem={renderItem}
-          style={{ width: "100%" }}
-          keyExtractor={(item) => item.id.toString()}
+      <View>
+        <Text>
+          <FlatList
+            data={requests}
+            renderItem={renderItem}
+            style={{ width: "100%" }}
+            keyExtractor={(item) => item.id.toString()}
+          />
+        </Text>
+      </View>
+      <View>
+        <Button
+          title="Learn More"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
         />
-      </Text>
+      </View>
     </Screen>
   );
 }
