@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Text, StyleSheet, View, TextInput, Button, TouchableOpacity, } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Screen from '../../components/Screen';
+import { AntDesign } from '@expo/vector-icons'; 
 
 export default function NewRequest({navigation}) {
   const [date, setDate] = useState(new Date(1598051730000));
@@ -44,13 +45,18 @@ export default function NewRequest({navigation}) {
 
   return (
     <Screen styles = {styles.container}>  
-    <TouchableOpacity
-        styles={{ color: "black" }}
-        onPress={() => navigation.navigate("Requests")}>
-        <Text>Back to Requests</Text>
-      </TouchableOpacity>
     <View style = {{backgroundColor:'#c3bef0'}}>
-      <Text style = {styles.header}> New Request </Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Main")} style={{flexDirection:"row",alignItems:'center',justifyContent:'center'}}>
+        <AntDesign 
+        name="leftcircleo" 
+        size={30}  
+        color="black"
+        style={{ marginLeft: 10, paddingTop: 10, flex: 2}}
+        />
+        <Text style = {styles.header}> New Request </Text>
+      </TouchableOpacity>
+      
+      
     </View>
     <View>
         <Text style={styles.title}>
@@ -113,7 +119,8 @@ const styles = StyleSheet.create({
           fontSize: 35,
           alignSelf: 'center',
           fontFamily: 'Avenir',
-          padding: 10
+          padding: 10,
+          flex: 10,
       },
       textContainer: {
           color: "#000000",
