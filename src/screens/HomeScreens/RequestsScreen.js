@@ -84,7 +84,7 @@ export default function RequestsScreen({ navigation }) {
             />
           </Text>
         </ScrollView>
-        <View>
+        <View > 
           <TouchableOpacity
             style={styles.footer}
             onPress={addRequest}
@@ -131,10 +131,10 @@ const styles = StyleSheet.create({
     borderColor: "rgba(0,0,0,0.2)",
     alignItems: "center",
     justifyContent: "center",
-    width: 165,
+    width: 168,
     position: "absolute",
     bottom: 10,
-    right: 20,
+    left:99,
     height: 70,
     backgroundColor: "#fff",
     borderRadius: 40,
