@@ -8,8 +8,12 @@ import AppLoading from 'expo-app-loading';
 import LoginScreen from "./src/screens/LoginScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
 import LoadingScreen from "./src/screens/LoadingScreen";
+<<<<<<< HEAD
 import RequestsScreen from "./src/screens/RequestsScreen";
 import NewRequest from "./src/screens/NewRequest";
+=======
+import BottomBar from "./src/components/BottomBar";
+>>>>>>> f664ccea1023f5c1a7c64922d597e2968e8cd311
 
 import { useFonts, Merriweather_700Bold, Merriweather_400Regular } from '@expo-google-fonts/merriweather';
 
@@ -19,8 +23,12 @@ const screens = [
   { name: "Loading", component: LoadingScreen },
   { name: "SignUp", component: SignUpScreen },
   { name: "Login", component: LoginScreen },
+<<<<<<< HEAD
   { name: "Requests", component: RequestsScreen },
   { name: "NewRequest", component: NewRequest },
+=======
+  { name: "Main", component: BottomBar },
+>>>>>>> f664ccea1023f5c1a7c64922d597e2968e8cd311
 ];
 
 LogBox.ignoreLogs(["Setting a timer for a long period of"]);
