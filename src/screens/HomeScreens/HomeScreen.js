@@ -36,7 +36,7 @@ export default function HomeScreen({ navigation }) {
             width: "100%",
           }}
           onPress={() => {
-            navigation.navigate("Request")
+            navigation.navigate("Request", {...item})
           }
           }
         >
@@ -92,12 +92,11 @@ const styles = StyleSheet.create({
   header: {
     color: "black",
     fontWeight: "bold",
-    fontSize: 35,
+    fontSize: 40,
     alignSelf: "center",
     fontFamily: "Avenir",
     padding: 10,
   },
-  
   request: {
     padding: 20,
     borderBottomColor: "#CCA8E9",

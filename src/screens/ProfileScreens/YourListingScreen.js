@@ -11,7 +11,7 @@ import { getCurrentUserId } from "../../../api/auth";
 
 const currentUser = getCurrentUserId();
 if (currentUser == null) {
-  
+
 }
 const docRef = firebase.firestore().collection("requests").doc(getCurrentUserId());
 
@@ -56,7 +56,7 @@ export default function ({ navigation }) {
       </View>
       <Text style={styles.title}>Shopping List :</Text>
       <View style={styles.list}>
-        <FlatList data={request.list} renderItem={renderItem} />
+        <FlatList data={request.list} renderItem={renderItem} keyExtractor={(item) => item.id} />
       </View>
     </Screen>
   );
