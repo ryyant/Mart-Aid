@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import FriendsBar from '../../components/FriendsBar';
+import FriendsBar from '../../components/ProfileBar';
 
 const profileStack = createStackNavigator();
 

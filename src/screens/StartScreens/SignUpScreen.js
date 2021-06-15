@@ -9,13 +9,11 @@ import {
 } from "react-native";
 import { CommonActions } from "@react-navigation/native";
 import { TextInput } from "react-native-paper";
-import HideKeyboard from "../components/HideKeyboard";
+import HideKeyboard from '../../components/HideKeyboard';
+import Screen from '../../components/Screen';
 
-import Screen from "../components/Screen";
-
-import * as Authentication from "../../api/auth";
+import * as Authentication from "../../../api/auth";
 import { Merriweather_400Regular } from "@expo-google-fonts/merriweather";
-import { back } from "react-native/Libraries/Animated/src/Easing";
 
 export default ({ navigation }) => {
   const [email, onChangeEmail] = React.useState("");
@@ -36,7 +34,7 @@ export default ({ navigation }) => {
             index: 0,
             routes: [
               {
-                name: "Requests",
+                name: "Main",
                 params: { name: user.displayName },
               },
             ],
@@ -54,7 +52,7 @@ export default ({ navigation }) => {
       <Screen scrollable style={styles.container}>
         <Image
           style={styles.logo}
-          source={require("../../assets/Logo.png")}
+          source={require('../../../assets/Logo.png')}
         ></Image>
 
         <View style={styles.textContainer}>
