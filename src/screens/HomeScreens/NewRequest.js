@@ -3,7 +3,6 @@ import {Alert, Modal, Pressable, Text, StyleSheet, View, TextInput, Button, Touc
 import Screen from '../../components/Screen';
 import { AntDesign } from '@expo/vector-icons'; 
 
-
 export default function NewRequest({navigation}) {
 
   const SAMPLE = [
@@ -12,6 +11,7 @@ export default function NewRequest({navigation}) {
   ];
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [todoText, setTodoText] = useState("");
 
   function renderItem({ item }) {
     return (
@@ -31,23 +31,11 @@ export default function NewRequest({navigation}) {
     );
   }
 
-  function AddScreen() {
-
-  }
-
 
   return (
     <Screen styles = {styles.container}>  
-    <View style = {{backgroundColor:'#c3bef0'}}>
-      <TouchableOpacity onPress={() => navigation.navigate("Requests")} style={{flexDirection:"row",alignItems:'center',justifyContent:'center'}}>
-        <AntDesign 
-        name="leftcircleo" 
-        size={25}  
-        color="black"
-        style={{ marginLeft: 10, paddingTop: 10, flex: 2}}
-        />
+    <View style = {{backgroundColor:'#c3bef0', paddingTop:45}}>
         <Text style = {styles.header}> New Request </Text>
-      </TouchableOpacity>
     </View>
 
     <View>
@@ -83,11 +71,12 @@ export default function NewRequest({navigation}) {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Add new item!</Text>
+            <Text style={styles.modalTitle}>Add new item!</Text>
             <Text style={styles.modalText}>
                Item Name:
             </Text>
             <TextInput
+              onChangeText={(text) => setTodoText(text)}
               placeholder="e.g.Milk" 
               style={styles.modalText}
             />
@@ -119,6 +108,14 @@ export default function NewRequest({navigation}) {
             >
               <Text style={styles.textStyle}>Done</Text>
             </Pressable>
+
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Cancel</Text>
+            </Pressable>
+
           </View>
         </View>
       </Modal>
@@ -129,11 +126,13 @@ export default function NewRequest({navigation}) {
         <Text style={styles.textStyle}>Add new Item!</Text>
       </Pressable>
     </View>
+    
 
 
     <View style={styles.list}>
       <FlatList data={SAMPLE} renderItem={renderItem} />
     </View>
+
   </Screen>
   );
 }
@@ -150,13 +149,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Avenir'
       },
       header: {
-          color:'#defcf9',
-          fontWeight:'bold',
-          fontSize: 35,
-          alignSelf: 'center',
-          fontFamily: 'Avenir',
-          padding: 10,
-          flex: 10,
+        color: "#defcf9",
+        fontWeight: "bold",
+        fontSize: 40,
+        alignSelf: "center",
+        fontFamily: "Avenir",
+        padding: 10,
       },
       textContainer: {
           color: "black",
@@ -191,7 +189,7 @@ const styles = StyleSheet.create({
         margin: 20,
         backgroundColor: "white",
         borderRadius: 20,
-        padding: 35,
+        padding: 40,
         alignItems: "center",
         shadowColor: "#000",
         position: 'absolute',
@@ -207,7 +205,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 14,
         elevation: 2,
-   
+        margin: 5,
       },
       buttonOpen: {
         backgroundColor: "#CADEFC",
@@ -226,7 +224,14 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "black"
       },
+      modalTitle: {
+        marginBottom: 15,
+        textAlign: "center",
+        color: "black",
+        fontSize: 20,
+      },
       list: {
+        paddingTop: 10,
         width: "100%",
       },
 });
