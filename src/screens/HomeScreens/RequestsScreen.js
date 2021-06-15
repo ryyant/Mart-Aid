@@ -9,10 +9,13 @@ import {
   FlatList,
   Header,
   Button,
+  ListFooterComponent,
+  ScrollView,
 } from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
+import SecondIcon from 'react-native-vector-icons/Entypo'
 
 const db = firebase.firestore().collection("requests");
 
@@ -62,38 +65,41 @@ export default function RequestsScreen({ navigation }) {
     );
   }
 
+  function addRequest() {
+    navigation.navigate("New Request")
+  }
+
   return (
-    <Screen styles={styles.container}>
+    <Screen style={styles.container}>
       <View style={{ backgroundColor: "#c3bef0" }}>
         <Text style={styles.header}>Requests</Text>
       </View>
-      <View>
-        <Text>
-          <FlatList
-            data={requests}
-            renderItem={renderItem}
-            style={{ width: "100%" }}
-            keyExtractor={(item) => item.id.toString()}
-          />
-        </Text>
-      </View>
-      <View>
-        <Button
-          title="Learn More"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-      </View>
+        <ScrollView>
+          <Text>
+            <FlatList
+              data={requests}
+              renderItem={renderItem}
+              style={{ width: "100%" }}
+              keyExtractor={(item) => item.id.toString()}
+            />
+          </Text>
+        </ScrollView>
+        <View>
+          <TouchableOpacity
+            style={styles.footer}
+            onPress={addRequest}
+          >
+            <SecondIcon style={styles.icon} name="add-to-list" size={27} color="#676B6B" />
+            <Text style = {styles.newRequest}>New Request</Text>
+          </TouchableOpacity>
+        </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fffdf1",
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   header: {
     color: "#defcf9",
@@ -120,4 +126,47 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  footer: {
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.2)",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 165,
+    position: "absolute",
+    bottom: 10,
+    right: 20,
+    height: 70,
+    backgroundColor: "#fff",
+    borderRadius: 40,
+    color:'grey',
+    flexDirection:'row',
+  },
+  icon: {
+    paddingRight:8
+  },
+  newRequest: {
+    fontFamily: "Avenir",
+    fontSize: 18,
+    fontWeight: '600'
+  }
 });
+
+{
+  /* <TouchableOpacity
+style={{
+  borderWidth: 1,
+  borderColor: "rgba(0,0,0,0.2)",
+  alignItems: "center",
+  justifyContent: "center",
+  width: 70,
+  position: "absolute",
+  bottom: 10,
+  right: 10,
+  height: 70,
+  backgroundColor: "#fff",
+  borderRadius: 100,
+}}
+>
+<Icon name="rocket" size={50} color="#01a699" />
+</TouchableOpacity> */
+}
