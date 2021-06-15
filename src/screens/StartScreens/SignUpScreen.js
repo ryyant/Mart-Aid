@@ -13,7 +13,6 @@ import HideKeyboard from "../../components/HideKeyboard";
 import Screen from "../../components/Screen";
 
 import * as Authentication from "../../../api/auth";
-import { Merriweather_400Regular } from "@expo-google-fonts/merriweather";
 
 export default ({ navigation }) => {
   const [email, onChangeEmail] = React.useState("");
@@ -160,8 +159,8 @@ const styles = StyleSheet.create({
 
   logoName: {
     marginTop: "50%",
-    marginHorizontal: 40,
-    paddingBottom: 10,
+    marginHorizontal: "10%",
+    paddingBottom: "2%",
     fontSize: 50,
     fontFamily: "AvenirNext-Bold",
     alignSelf: "flex-start",
