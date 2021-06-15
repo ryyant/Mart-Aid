@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -8,47 +8,67 @@ import {
   Image,
   FlatList,
   Header,
-  Button
+  Button,
 } from "react-native";
 import Screen from "../components/Screen";
+import firebase from "../../api/firebase";
+import Icon from "react-native-vector-icons/FontAwesome";
+
+const db = firebase.firestore().collection("requests");
 
 export default function RequestsScreen({ navigation }) {
+  const [requests, setRequests] = useState([]);
+  const [notes, setNotes] = useState([]);
+
   useEffect(() => {
+    const unsubscribe = db.onSnapshot((collection) => {
+      const updatedRequests = collection.docs.map((doc) => doc.data());
+      setRequests(updatedRequests);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  /*   useEffect(() => {
     navigation.setOptions({
       headerRight: () => <Button title="Add" />,
     });
-  });
+  }) */
 
-  const requests = [
+  /*   const requests = [
     { title: "Request1", id: "0" },
     { title: "Request2", id: "1" },
     { title: "Request3", id: "2" },
-  ];
+  ]; */
+
+  const backToLogin = "< Back to Login";
 
   function renderItem({ item }) {
     return (
-      <View
-        style={{
-          padding: 10,
-          paddingTop: 20,
-          paddingBottom: 20,
-          borderBottomColor: "blue",
-          borderBottomWidth: 1,
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <Text style={{ fontSize: 20, width: "80%" }}>{item.title}</Text>
+      <View style={styles.request}>
+        <TouchableOpacity
+          style={{
+            width: "100%",
+          }}
+        >
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <Text style={{ fontSize: 20, width: "90%" }}>{item.address}</Text>
+            <Icon name="angle-double-right" size={30} color="#900" />
+          </View>
+          <Text>{item.name}</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 
   return (
     <Screen styles={styles.container}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Login")}
-      >
-        <Text> Back to Login</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <Text>{backToLogin}</Text>
       </TouchableOpacity>
       <View style={{ backgroundColor: "#c3bef0" }}>
         <Text style={styles.header}>Requests</Text>
@@ -61,7 +81,6 @@ export default function RequestsScreen({ navigation }) {
           keyExtractor={(item) => item.id.toString()}
         />
       </Text>
-      <Text>hello</Text>
     </Screen>
   );
 }
@@ -88,5 +107,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontFamily: "Avenir",
     padding: 10,
-  }
+  },
+  request: {
+    padding: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderBottomColor: "blue",
+    borderBottomWidth: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
 });
