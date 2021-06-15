@@ -62,8 +62,7 @@ export default function HomeScreen({ navigation }) {
     <Text style={styles.header}>Requests</Text>
   </View>
     <Screen style={styles.container}>
-
-        <ScrollView>
+        <View>
           <Text>
             <FlatList
               data={requests}
@@ -72,7 +71,7 @@ export default function HomeScreen({ navigation }) {
               keyExtractor={(item) => item.id.toString()}
             />
           </Text>
-        </ScrollView>
+        </View>
         <View > 
           <TouchableOpacity
             style={styles.footer}
@@ -126,10 +125,15 @@ const styles = StyleSheet.create({
     bottom: 10,
     left:99,
     height: 70,
-    backgroundColor: "#fff",
+    backgroundColor: "#DDF5F5",
     borderRadius: 40,
     color:'grey',
     flexDirection:'row',
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 1, //IOS
+    elevation: 2, // Android
   },
   icon: {
     paddingRight:8
