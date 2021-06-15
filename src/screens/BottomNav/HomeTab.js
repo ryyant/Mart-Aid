@@ -1,7 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import RequestsScreen from "../RequestsScreen";
+import RequestsScreen from "../HomeScreens/RequestsScreen";
+import NewRequestSvc from "../HomeScreens/RequestsScreen";
+
 
 const homeStack = createStackNavigator();
 

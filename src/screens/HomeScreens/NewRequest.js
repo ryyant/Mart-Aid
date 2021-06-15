@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Text, StyleSheet, View, TextInput, Button, TouchableOpacity, } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import Screen from "../components/Screen";
+import Screen from '../../components/Screen';
 
 export default function NewRequest({navigation}) {
   const [date, setDate] = useState(new Date(1598051730000));

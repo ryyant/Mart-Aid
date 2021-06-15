@@ -9,7 +9,7 @@ import {
   FlatList,
   Header,
 } from "react-native";
-import Screen from '../../components/Screen';
+import Screen from "../../components/Screen";
 
 export default function ({ navigation }) {
 
@@ -22,7 +22,6 @@ export default function ({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fffdf1",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",

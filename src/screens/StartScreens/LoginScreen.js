@@ -2,10 +2,9 @@ import React, { useState, useRef } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, Keyboard, Pressable } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { CommonActions } from "@react-navigation/native";
-import HideKeyboard from '../components/HideKeyboard';
-
-import Screen from "../components/Screen";
-import * as Authentication from "../../api/auth";
+import HideKeyboard from '../../components/HideKeyboard';
+import Screen from '../../components/Screen';
+import * as Authentication from "../../../api/auth";
 
 export default ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -38,7 +37,7 @@ export default ({ navigation }) => {
         <HideKeyboard>
         <Screen scrollable style={styles.container}>
             
-            <Image style={styles.logo} source={require('../../assets/Logo.png')}></Image>
+            <Image style={styles.logo} source={require('../../../assets/Logo.png')}></Image>
             <Text style={styles.logoName}>Mart-Aid</Text>
 
             

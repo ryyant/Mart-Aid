@@ -1,12 +1,12 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import FriendsBar from '../../components/FriendsBar';
+import ProfileBar from '../../components/ProfileBar';
 
 const profileStack = createStackNavigator();
 
 const screens = [
-  { name: "FriendsBar", component: FriendsBar },
+  { name: "ProfileBar", component: ProfileBar },
 ];
 
 export default () => {
