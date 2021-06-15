@@ -31,7 +31,7 @@ export default function NewRequest({navigation}) {
           padding: 10,
           paddingTop: 20,
           paddingBottom: 20,
-          borderBottomColor: "blue",
+          borderBottomColor: "black",
           borderBottomWidth: 1,
           flexDirection: "row",
           justifyContent: "space-between",
@@ -46,31 +46,37 @@ export default function NewRequest({navigation}) {
     <Screen styles = {styles.container}>  
     <TouchableOpacity
         styles={{ color: "black" }}
-        onPress={() => navigation.navigate("Requests")}
-      >
+        onPress={() => navigation.navigate("Requests")}>
         <Text>Back to Requests</Text>
       </TouchableOpacity>
     <View style = {{backgroundColor:'#c3bef0'}}>
       <Text style = {styles.header}> New Request </Text>
     </View>
     <View>
-        <Text>
+        <Text style={styles.title}>
             Name
         </Text>
         <TextInput
           placeholder="Name" 
           style={styles.input}
         />
-        <Text>
+        <Text style={styles.title}>
             Address
         </Text>
-        <TextInput
+        <TextInput 
           placeholder="Address"
           style={styles.input}
         />
     </View>
+    <Text style={styles.title}>
+            Delivered By?
+        </Text>
     <View style={styles.textContainer}>
-        <Button onPress={showDatepicker} title="Delivered by?" style= {styles.textContainer}/>
+        <Button style={styles.button}
+        onPress={showDatepicker} 
+        title="Select Date"
+
+         />
     </View>
         {show && (
         <DateTimePicker
@@ -80,9 +86,10 @@ export default function NewRequest({navigation}) {
           is24Hour={true}
           display="default"
           onChange={onChange}
+          textColor="black"
         />
         )}
-    <Text>
+    <Text style={styles.title}>
         Shopping List
     </Text>
   </Screen>
@@ -101,9 +108,9 @@ const styles = StyleSheet.create({
         fontFamily: 'Avenir'
       },
       header: {
-          color:'#defcf9',
+          color:'#150E56',
           fontWeight:'bold',
-          fontSize: 40,
+          fontSize: 35,
           alignSelf: 'center',
           fontFamily: 'Avenir',
           padding: 10
@@ -113,6 +120,27 @@ const styles = StyleSheet.create({
           alignSelf: 'flex-start',
           fontFamily: 'Avenir',
           padding: 10,
-          fontSize:10
+          paddingBottom: 5,
+          paddingTop: 5,
+          fontSize:15
+      },
+      title: {
+          color: '#150E56',
+          fontWeight: 'bold',
+          fontSize: 18,
+          padding:10,
+          paddingBottom: 5,
+          paddingTop: 20,
+          fontFamily: 'Avenir',
+      },
+      input: {
+        fontSize: 15,
+        fontFamily: 'Avenir',
+        paddingLeft: 10,
+
+      },
+      button: {
+          color: 'black',
+          paddingLeft: 10,
       }
 });
