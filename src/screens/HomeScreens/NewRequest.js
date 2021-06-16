@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Alert,
   Modal,
@@ -32,7 +32,6 @@ export default function NewRequest({ navigation }) {
 
   function addToList() {
     let newItem = `${brand} ${item} ${size} x${quantity}`;
-    console.log(list);
     setList(newItem);
     console.log(list);
   }
@@ -118,8 +117,8 @@ export default function NewRequest({ navigation }) {
                       <TouchableOpacity
                         style={styles.modalButton}
                         onPress={() => {
-                          setModalVisible(!modalVisible);
                           addToList();
+                          setModalVisible(!modalVisible);
                         }}
                       >
                         <Text style={styles.textStyle}>Done</Text>

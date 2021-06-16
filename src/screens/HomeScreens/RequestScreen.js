@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Modal,
   Text,
   StyleSheet,
   View,
-  TextInput,
   TouchableOpacity,
   FlatList,
 } from "react-native";
@@ -33,9 +31,9 @@ export default function Request({ navigation, route }) {
   }
 
   function acceptRequest() {
-    navigation.navigate("Home")
+    navigation.navigate("Home");
   }
-  
+
   return (
     <>
       <View style={{ backgroundColor: "#c3bef0", paddingTop: "14%" }}>
@@ -49,24 +47,26 @@ export default function Request({ navigation, route }) {
         </TouchableOpacity>
         <Text style={styles.header}> Request </Text>
       </View>
-      <Screen styles={styles.container}>
+      <Screen style={styles.container}>
         <View>
           <Text style={styles.title}>Name :</Text>
           <Text style={styles.input}>{route.params.name}</Text>
           <Text style={styles.title}>Address :</Text>
           <Text style={styles.input}>{route.params.address}</Text>
+          <Text style={styles.title}>Shopping List :</Text>
         </View>
-        <Text style={styles.title}>Shopping List :</Text>
         <View style={styles.list}>
-          <FlatList data={route.params.list} renderItem={renderItem} keyExtractor={(item) => item.id}/>
+          <FlatList
+            style={{ width: "100%" }}
+            data={route.params.list}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
         </View>
-        <View > 
-          <TouchableOpacity
-            style={styles.footer}
-            onPress={acceptRequest}
-          >
+        <View>
+          <TouchableOpacity style={styles.footer} onPress={acceptRequest}>
             <Icon style={styles.icon} name="check" size={23} color="#676B6B" />
-            <Text style = {styles.AcceptRequest}>Accept Request</Text>
+            <Text style={styles.AcceptRequest}>Accept Request</Text>
           </TouchableOpacity>
         </View>
       </Screen>
@@ -93,15 +93,7 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir",
     padding: 10,
   },
-  textContainer: {
-    color: "black",
-    alignSelf: "flex-start",
-    fontFamily: "Avenir",
-    padding: 10,
-    paddingBottom: 5,
-    paddingTop: 5,
-    fontSize: 15,
-  },
+
   title: {
     color: "#150E56",
     fontWeight: "bold",
@@ -111,87 +103,31 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     fontFamily: "Avenir",
   },
+
   input: {
     fontSize: 15,
     fontFamily: "Avenir",
     paddingLeft: 10,
   },
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 20,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 40,
-    alignItems: "center",
-    shadowColor: "#000",
-    position: "absolute",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 14,
-    elevation: 2,
-    margin: 5,
-  },
-  buttonOpen: {
-    backgroundColor: "#CADEFC",
-    position: "absolute",
-  },
-  buttonClose: {
-    backgroundColor: "#CADEFC",
-  },
-  textStyle: {
-    color: "black",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 10,
-    textAlign: "center",
-    color: "black",
-  },
-  modalTitle: {
-    marginBottom: 15,
-    textAlign: "center",
-    color: "black",
-    fontSize: 20,
-  },
+
   list: {
-    width: "100%",
-    paddingBottom: '25%' ,
+    flex: 1,
   },
-  backbutton: {
-    fontSize: 15,
-    fontFamily: "Avenir",
-    fontWeight: "bold",
-    paddingLeft: 10,
-  },
+
   AcceptRequest: {
     fontFamily: "Avenir",
     fontSize: 18,
-    fontWeight: '600'
+    fontWeight: "600",
   },
   footer: {
     borderWidth: 1,
     borderColor: "rgba(0,0,0,0.2)",
     alignSelf: "center",
-    alignItems: 'center',
+    alignItems: "center",
     justifyContent: "center",
-    width: '80%',
-    position: "relative",
-    bottom: 10,
+    width: "80%",
     height: 40,
+    bottom: 10,
     backgroundColor: "#CADEFC",
     borderRadius: 30,
     color: "grey",
@@ -205,5 +141,4 @@ const styles = StyleSheet.create({
   icon: {
     paddingRight: 8,
   },
-
 });
