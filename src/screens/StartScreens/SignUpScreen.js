@@ -11,7 +11,6 @@ import { CommonActions } from "@react-navigation/native";
 import { TextInput } from "react-native-paper";
 import HideKeyboard from "../../components/HideKeyboard";
 import Screen from "../../components/Screen";
-
 import * as Authentication from "../../../api/auth";
 
 export default ({ navigation }) => {
@@ -20,6 +19,7 @@ export default ({ navigation }) => {
   const [username, onChangeName] = React.useState("");
   const [isRegisterLoading, setIsRegisterLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  
 
   const handleRegister = () => {
     Keyboard.dismiss();
