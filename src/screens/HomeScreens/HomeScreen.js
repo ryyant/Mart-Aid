@@ -148,5 +148,4 @@ const styles = StyleSheet.create({
     top: "95%",
     right: "5%",
   },
-
 });

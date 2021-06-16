@@ -56,14 +56,6 @@ export default function ({ navigation }) {
   return (
     <Screen style={styles.container}>
       <View>
-      <TouchableOpacity
-        style={styles.logOutButton}
-        onPress={() => {
-          navigation.navigate("Login");
-        }}
-        >
-        <Icon name="sign-out" size={35} color="black" />
-        </TouchableOpacity>
         <FlatList
           data={requests}
           renderItem={renderItem}
@@ -98,9 +90,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  logOutButton: {
-    position: "absolute",
-    top: "95%",
-    right: "5%",
-  },
+  
 });
