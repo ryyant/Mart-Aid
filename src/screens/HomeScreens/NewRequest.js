@@ -14,20 +14,25 @@ import HideKeyboard from "../../components/HideKeyboard";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function NewRequest({ navigation }) {
-  const SAMPLE = [
-    { title: "Milk Meji 1L x1", id: "0", done: false },
-    { title: "Mala Chips Calbee 500g x2", id: "1", done: false },
-  ];
+  const [list, setList] = useState([]);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [todoText, setTodoText] = useState("");
+  const [item, setItem] = useState('');
+  const [brand, setBrand] = useState('');
+  const [size, setSize] = useState('');
+  const [quantity, setQuantity] = useState('');
 
   function renderItem({ item }) {
     return (
       <View style={styles.request}>
-        <Text>{item.title}</Text>
+        <Text>hello</Text>
       </View>
     );
+  }
+
+  function addToList() {
+    setList(`${brand} ${item} ${size} x${quantity}`);
+    console.log(list)
   }
 
   return (
@@ -73,25 +78,28 @@ export default function NewRequest({ navigation }) {
                     <Text style={styles.modalTitle}>Add new item!</Text>
                     <Text style={styles.modalText}>Item Name:</Text>
                     <TextInput
-                      onChangeText={(text) => setTodoText(text)}
+                      onChangeText={(text) => setItem(text)}
                       placeholder="e.g. Milk"
                       placeholderTextColor="#B8BDBD"
                       style={styles.modalText}
                     />
                     <Text style={styles.modalText}>Brand Name:</Text>
                     <TextInput
+                    onChangeText={(text) => setBrand(text)}
                       placeholder="e.g. Meji"
                       placeholderTextColor="#B8BDBD"
                       style={styles.modalText}
                     />
                     <Text style={styles.modalText}>Item Size:</Text>
                     <TextInput
+                    onChangeText={(text) => setSize(text)}
                       placeholder="e.g 1L/500g/1 packet"
                       style={styles.modalText}
                       placeholderTextColor="#B8BDBD"
                     />
                     <Text style={styles.modalText}>Quantity:</Text>
                     <TextInput
+                    onChangeText={(text) => setQuantity(text)}
                       placeholder="e.g. 3"
                       placeholderTextColor="#B8BDBD"
                       style={styles.modalText}
@@ -107,7 +115,10 @@ export default function NewRequest({ navigation }) {
 
                       <TouchableOpacity
                         style={styles.modalButton}
-                        onPress={() => setModalVisible(!modalVisible)}
+                        onPress={() => {
+                          setModalVisible(!modalVisible);
+                          addToList();
+                        }}
                       >
                         <Text style={styles.textStyle}>Done</Text>
                       </TouchableOpacity>
@@ -124,7 +135,8 @@ export default function NewRequest({ navigation }) {
             </TouchableOpacity>
 
             <View style={styles.list}>
-              <FlatList data={SAMPLE} renderItem={renderItem} />
+              {console.log(list)}
+              <FlatList data={list} renderItem={renderItem} />
             </View>
           </View>
 

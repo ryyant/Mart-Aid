@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList
-} from "react-native";
+import { StyleSheet, View, Text, FlatList } from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import { getCurrentUserId } from "../../../api/auth";
 
-const currentUser = getCurrentUserId();
-if (currentUser == null) {
-
-}
-const docRef = firebase.firestore().collection("requests").doc(getCurrentUserId());
 
 export default function ({ navigation }) {
   const [request, setRequest] = useState("");
+  const [currentUser, setCurrentUser] = useState(getCurrentUserId());
+
+  useEffect(() => {
+    setCurrentUser(getCurrentUserId())
+  }, []);
 
   useEffect(() => {
     const unsubscribe = docRef.onSnapshot((doc) => {
@@ -46,6 +41,9 @@ export default function ({ navigation }) {
       </View>
     );
   }
+
+  const docRef = firebase.firestore().collection("requests").doc(currentUser);
+
   return (
     <Screen styles={styles.container}>
       <View>
@@ -56,7 +54,11 @@ export default function ({ navigation }) {
       </View>
       <Text style={styles.title}>Shopping List :</Text>
       <View style={styles.list}>
-        <FlatList data={request.list} renderItem={renderItem} keyExtractor={(item) => item.id} />
+        <FlatList
+          data={request.list}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
       </View>
     </Screen>
   );

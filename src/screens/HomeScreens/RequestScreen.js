@@ -6,22 +6,14 @@ import {
   Text,
   StyleSheet,
   View,
-  TextInput,
-  Button,
   TouchableOpacity,
   FlatList,
 } from "react-native";
 import Screen from "../../components/Screen";
-import HideKeyboard from "../../components/HideKeyboard";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function Request({ navigation, route }) {
   console.log(route.params.name);
-
-  const SAMPLE = [
-    { title: "Milk Meji 1L x1", id: "0", done: false },
-    { title: "Mala Chips Calbee 500g x2", id: "1", done: false },
-  ];
 
   const [modalVisible, setModalVisible] = useState(false);
   const [todoText, setTodoText] = useState("");
@@ -43,8 +35,6 @@ export default function Request({ navigation, route }) {
       </View>
     );
   }
-
-  const backToRequests = "< Back to Requests";
 
   return (
     <>
