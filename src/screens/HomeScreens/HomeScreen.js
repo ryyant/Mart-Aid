@@ -5,12 +5,12 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  ScrollView,
 } from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
-import SecondIcon from 'react-native-vector-icons/Entypo'
+import SecondIcon from 'react-native-vector-icons/Entypo';
+import SearchBar from "../../components/SearchBar";
 
 const db = firebase.firestore().collection("requests");
 
@@ -36,7 +36,7 @@ export default function HomeScreen({ navigation }) {
             width: "100%",
           }}
           onPress={() => {
-            navigation.navigate("Request")
+            navigation.navigate("Request", {...item})
           }
           }
         >
@@ -58,26 +58,25 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <>
-    <View style={{ backgroundColor: "#c3bef0", paddingTop:45 }}>
+  <View style={{ backgroundColor: "#c3bef0", paddingTop:"12%" }}>
     <Text style={styles.header}>Requests</Text>
   </View>
     <Screen style={styles.container}>
-        <View>
-          <Text>
+      <SearchBar/>
+        <View style={{flex: 1}}>
             <FlatList
               data={requests}
               renderItem={renderItem}
-              style={{ width: "100%" }}
+              style={{width: "100%" }}
               keyExtractor={(item) => item.id.toString()}
             />
-          </Text>
         </View>
         <View > 
           <TouchableOpacity
             style={styles.footer}
             onPress={addRequest}
           >
-            <SecondIcon style={styles.icon} name="add-to-list" size={27} color="#676B6B" />
+            <SecondIcon style={styles.icon} name="add-to-list" size={23} color="#676B6B" />
             <Text style = {styles.newRequest}>New Request</Text>
           </TouchableOpacity>
         </View>
@@ -91,15 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    color: "#defcf9",
-    fontWeight: "bold",
-    fontSize: 40,
-    alignSelf: "center",
-    fontFamily: "Avenir",
-    padding: 10,
-  },
-  button: {
-    color: "#defcf9",
+    color: "black",
     fontWeight: "bold",
     fontSize: 40,
     alignSelf: "center",
@@ -107,10 +98,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   request: {
-    padding: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    borderBottomColor: "blue",
+    padding: 20,
+    borderBottomColor: "#CCA8E9",
     borderBottomWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -118,49 +107,30 @@ const styles = StyleSheet.create({
   footer: {
     borderWidth: 1,
     borderColor: "rgba(0,0,0,0.2)",
-    alignItems: "center",
+    alignSelf: "center",
+    alignItems: 'center',
     justifyContent: "center",
-    width: 168,
+    width: '80%',
     position: "absolute",
     bottom: 10,
-    left:99,
-    height: 70,
-    backgroundColor: "#DDF5F5",
-    borderRadius: 40,
-    color:'grey',
-    flexDirection:'row',
-    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    height: 40,
+    backgroundColor: "#CADEFC",
+    borderRadius: 30,
+    color: "grey",
+    flexDirection: "row",
+    shadowColor: "rgba(0,0,0, .4)", // IOS
     shadowOffset: { height: 1, width: 1 }, // IOS
     shadowOpacity: 1, // IOS
     shadowRadius: 1, //IOS
     elevation: 2, // Android
   },
   icon: {
-    paddingRight:8
+    paddingRight: 8,
   },
+
   newRequest: {
     fontFamily: "Avenir",
     fontSize: 18,
     fontWeight: '600'
   }
 });
-
-{
-  /* <TouchableOpacity
-style={{
-  borderWidth: 1,
-  borderColor: "rgba(0,0,0,0.2)",
-  alignItems: "center",
-  justifyContent: "center",
-  width: 70,
-  position: "absolute",
-  bottom: 10,
-  right: 10,
-  height: 70,
-  backgroundColor: "#fff",
-  borderRadius: 100,
-}}
->
-<Icon name="rocket" size={50} color="#01a699" />
-</TouchableOpacity> */
-}

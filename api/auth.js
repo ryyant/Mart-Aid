@@ -33,7 +33,7 @@ export const logoff = async(onSuccess, onError) => {
     }
 }
 
-export const getCurrentUserId = () => auth.currentUser ? auth.currentUser.uid : null;
+export const getCurrentUserId = () => auth.currentUser ? auth.currentUser.uid : 'uid';
 
 export const getCurrentUserName = () => auth.currentUser ? auth.currentUser.displayName : null;
 

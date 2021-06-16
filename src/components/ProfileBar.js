@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight ? StatusBar.currentHeight : 0,
   },
   header: {
-    color: "#defcf9",
+    color: "black",
     fontWeight: "bold",
     fontSize: 40,
     alignSelf: "center",

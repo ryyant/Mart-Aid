@@ -3,27 +3,25 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  Header,
-  ScrollView
+  FlatList
 } from "react-native";
-import Screen from '../../components/Screen';
+import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { getCurrentUserId } from "../../../api/auth";
 
-const db = firebase.firestore().collection("requests");
+const currentUser = getCurrentUserId();
+if (currentUser == null) {
 
+}
+const docRef = firebase.firestore().collection("requests").doc(getCurrentUserId());
 
 export default function ({ navigation }) {
-  const [requests, setRequests] = useState([]);
+  const [request, setRequest] = useState("");
 
   useEffect(() => {
-    const unsubscribe = db.onSnapshot((collection) => {
-      const updatedRequests = collection.docs.map((doc) => doc.data());
-      setRequests(updatedRequests);
+    const unsubscribe = docRef.onSnapshot((doc) => {
+      const updatedRequest = doc.data();
+      setRequest(updatedRequest);
     });
 
     return () => {
@@ -31,36 +29,35 @@ export default function ({ navigation }) {
     };
   }, []);
 
-
   function renderItem({ item }) {
     return (
-      <View style={styles.request}>
-        <TouchableOpacity
-          style={{
-            width: "100%",
-          }}
-        >
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <Text style={{ fontSize: 20, width: "90%" }}>List</Text>
-            <Icon name="cart-arrow-down" size={30} color="black" />
-          </View>
-          <Text>{item.name}</Text>
-        </TouchableOpacity>
+      <View
+        style={{
+          padding: 10,
+          paddingTop: 20,
+          paddingBottom: 20,
+          borderBottomColor: "black",
+          borderBottomWidth: 1,
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text>{item}</Text>
       </View>
     );
   }
-
   return (
-    <Screen style = {styles.container}>
+    <Screen styles={styles.container}>
       <View>
-          <FlatList
-            data={requests}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id.toString()}
-          />
-          </View>
+        <Text style={styles.title}>Name :</Text>
+        <Text style={styles.input}>{request.name}</Text>
+        <Text style={styles.title}>Address :</Text>
+        <Text style={styles.input}>{request.address}</Text>
+      </View>
+      <Text style={styles.title}>Shopping List :</Text>
+      <View style={styles.list}>
+        <FlatList data={request.list} renderItem={renderItem} keyExtractor={(item) => item.id} />
+      </View>
     </Screen>
   );
 }
@@ -89,5 +86,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-
+  title: {
+    fontFamily: "Avenir",
+    fontSize: 16,
+    fontWeight: "bold",
+    padding: 5,
+  },
+  input: {
+    fontFamily: "Avenir",
+    fontSize: 16,
+    padding: 5,
+  },
 });

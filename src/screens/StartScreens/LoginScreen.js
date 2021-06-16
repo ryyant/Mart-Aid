@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Image,
   Keyboard,
-  Pressable,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { CommonActions } from "@react-navigation/native";
@@ -152,9 +151,9 @@ const styles = StyleSheet.create({
 
   logoName: {
     marginTop: "60%",
-    marginHorizontal: 40,
-    paddingBottom: 10,
-    fontSize: 60,
+    marginHorizontal: "10%",
+    paddingBottom: "2%",
+    fontSize: 55,
     fontFamily: "AvenirNext-Bold",
     alignSelf: "flex-start",
     color: "white",
