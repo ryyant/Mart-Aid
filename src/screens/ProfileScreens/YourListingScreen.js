@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
 import {
   StyleSheet,
   View,
@@ -7,9 +6,6 @@ import {
   FlatList,
   TouchableOpacity
 } from "react-native";
-=======
-import { StyleSheet, View, Text, FlatList } from "react-native";
->>>>>>> 09446de928fc805389e6b7a6ab53e32e26ba731f
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import { getCurrentUserId } from "../../../api/auth";
