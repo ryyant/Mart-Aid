@@ -27,7 +27,7 @@ export default function NewRequest({ navigation }) {
   const [quantity, setQuantity] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [acceptedBy, setAcceptedBy] = useState(null);
+  const [acceptedBy, setAcceptedBy] = useState('');
 
   useEffect(() => {
     setCurrentUser(getCurrentUserId());
