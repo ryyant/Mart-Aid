@@ -46,7 +46,7 @@ export default function ({ navigation }) {
             width: "100%",
           }}
           onPress={() => {
-            navigation.navigate("Request", { ...item });
+            navigation.navigate("Accepted Request", { ...item });
           }}
         >
           <View
