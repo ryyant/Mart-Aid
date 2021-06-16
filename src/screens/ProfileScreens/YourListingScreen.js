@@ -56,10 +56,14 @@ export default function ({ navigation }) {
     .collection("requests")
     .doc(currentUser.toString());
 
+  function deleteListing() {
+    docRef.delete();
+    setRequest('');
+  }
+
   return (
     <Screen style={styles.container}>
       <View>
-        <Text style={styles.title}>Name :</Text>
         <Text style={styles.input}>{request.name}</Text>
         <Text style={styles.input}>{request.address}</Text>
       </View>
@@ -74,6 +78,9 @@ export default function ({ navigation }) {
         style={styles.logo}
         source={require("../../../assets/Logo.png")}
       ></Image>
+      <TouchableOpacity style={styles.deleteButton} onPress={deleteListing}>
+        <Text style={styles.input}>Clear</Text>
+      </TouchableOpacity>
     </Screen>
   );
 }
@@ -124,4 +131,14 @@ const styles = StyleSheet.create({
     height: "10%",
     alignSelf: "center",
   },
+
+  deleteButton: {
+    position: "absolute",
+    bottom: "2%",
+    borderRadius: 15,
+    borderWidth: 1,
+    alignSelf: 'center',
+    alignItems: 'center',
+    width: "30%",
+  }
 });
