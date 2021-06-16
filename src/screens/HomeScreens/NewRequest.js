@@ -25,13 +25,14 @@ export default function NewRequest({ navigation }) {
   function renderItem({ item }) {
     return (
       <View style={styles.request}>
-        <Text>{list}</Text>
+        <Text>{item}</Text>
       </View>
     );
   }
 
   function addToList() {
     let newItem = `${brand} ${item} ${size} x${quantity}`;
+    console.log(list);
     setList(newItem);
     console.log(list);
   }
