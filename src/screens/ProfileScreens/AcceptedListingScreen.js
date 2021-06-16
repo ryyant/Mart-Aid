@@ -15,22 +15,29 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { getCurrentUserId } from "../../../api/auth";
 
 const currentUser = getCurrentUserId();
-const db = firebase.firestore();
+const db = firebase
+  .firestore()
+  .collection("requests")
+  .where("acceptedBy", "==", currentUser);
 
 export default function ({ navigation }) {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    db.collection("requests")
-      .where("acceptedBy", "==", currentUser)
-      .onSnapshot((querySnapshot) => {
-        var helper = [];
-        querySnapshot.forEach((doc) => {
-          helper.push(doc.data());
-        });
-        setRequests(helper);
+    console.log(currentUser);
+    const unsubscribe = db.onSnapshot((querySnapshot) => {
+      var helper = [];
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data().name)
+        helper.push(doc.data());
       });
-  },[]);
+      setRequests(helper);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   function renderItem({ item }) {
     return (
@@ -39,7 +46,6 @@ export default function ({ navigation }) {
           style={{
             width: "100%",
           }}
-         
         >
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -56,13 +62,13 @@ export default function ({ navigation }) {
   return (
     <Screen style={styles.container}>
       <View>
-      <TouchableOpacity
-        style={styles.logOutButton}
-        onPress={() => {
-          navigation.navigate("Login");
-        }}
+        <TouchableOpacity
+          style={styles.logOutButton}
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
         >
-        <Icon name="sign-out" size={35} color="black" />
+          <Icon name="sign-out" size={35} color="black" />
         </TouchableOpacity>
         <FlatList
           data={requests}

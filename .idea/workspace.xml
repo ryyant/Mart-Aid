@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f022e3a7-62de-4319-879f-5cefaf1930f3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.expo/packager-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/.expo/packager-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/HomeScreens/RequestScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/HomeScreens/RequestScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/api/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreens/AcceptedListingScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreens/AcceptedListingScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreens/YourListingScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreens/YourListingScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/StartScreens/LoginScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/StartScreens/LoginScreen.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,11 +41,11 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="106" y="170" width="1200" height="584" key="AVDManager" timestamp="1623819888291">
+    <state x="106" y="170" width="1200" height="584" key="AVDManager" timestamp="1623848466975">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="24" y="203" width="1500" height="738" key="AVDManager/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1623777262478" />
-    <state x="106" y="170" width="1200" height="584" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1623819888291" />
+    <state x="106" y="170" width="1200" height="584" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1623848466975" />
     <state x="133" y="215" width="1500" height="738" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1623761288761" />
   </component>
 </project>

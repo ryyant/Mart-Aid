@@ -42,87 +42,94 @@ export default ({ navigation }) => {
         setIsLoginLoading(false);
         return console.error(error);
       }
-    );}
+    );
+    console.log(Authentication.getCurrentUserId());
+  };
 
   return (
-    <HideKeyboard>
-      <Screen style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={require("../../../assets/Logo.png")}
-        ></Image>
-        <Text style={styles.logoName}>Mart-Aid.</Text>
+    <>
+      <HideKeyboard>
+        <Screen style={styles.container}>
+          <Image
+            style={styles.logo}
+            source={require("../../../assets/Logo.png")}
+          ></Image>
+          <Text style={styles.logoName}>Mart-Aid.</Text>
 
-        <View style={styles.textContainer}>
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            mode="flat"
-            theme={{
-              colors: {
-                primary: "black",
-                underlineColor: "transparent",
-                background: "#003489",
-              },
-            }}
-            label="Email address"
-            placeholder="e.g. harrystyles@mail.com"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            returnKeyType="next"
-            blurOnSubmit={false}
-            style={styles.input}
-            left={<TextInput.Icon name="account" color={"#0c4271"} />}
-          />
+          <View style={styles.textContainer}>
+            <TextInput
+              value={email}
+              onChangeText={setEmail}
+              mode="flat"
+              theme={{
+                colors: {
+                  primary: "black",
+                  underlineColor: "transparent",
+                  background: "#003489",
+                },
+              }}
+              label="Email address"
+              placeholder="e.g. harrystyles@mail.com"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              returnKeyType="next"
+              blurOnSubmit={false}
+              style={styles.input}
+              left={<TextInput.Icon name="account" color={"#0c4271"} />}
+            />
 
-          <TextInput
-            ref={passwordTextInput}
-            mode="flat"
-            style={styles.input}
-            label="Password"
-            placeholder="e.g. iLoveHarry"
-            theme={{
-              colors: {
-                primary: "black",
-                underlineColor: "transparent",
-                background: "#003489",
-              },
-            }}
-            onChangeText={setPassword}
-            secureTextEntry={!isPasswordVisible}
-            autoCapitalize="none"
-            left={
-              <TextInput.Icon name="form-textbox-password" color={"#0c4271"} />
-            }
-            right={
-              <TextInput.Icon
-                color = {"#0c4271"}
-                name={isPasswordVisible ? "eye-off" : "eye"}
-                onPress={() => setIsPasswordVisible((state) => !state)}
-              />
-            }
-          />
-        </View>
+            <TextInput
+              ref={passwordTextInput}
+              mode="flat"
+              style={styles.input}
+              label="Password"
+              placeholder="e.g. iLoveHarry"
+              theme={{
+                colors: {
+                  primary: "black",
+                  underlineColor: "transparent",
+                  background: "#003489",
+                },
+              }}
+              onChangeText={setPassword}
+              secureTextEntry={!isPasswordVisible}
+              autoCapitalize="none"
+              left={
+                <TextInput.Icon
+                  name="form-textbox-password"
+                  color={"#0c4271"}
+                />
+              }
+              right={
+                <TextInput.Icon
+                  color={"#0c4271"}
+                  name={isPasswordVisible ? "eye-off" : "eye"}
+                  onPress={() => setIsPasswordVisible((state) => !state)}
+                />
+              }
+            />
+          </View>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={handleLogin}
-          loading={isLoginLoading}
-          disabled={isLoginLoading}
-        >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleLogin}
+            loading={isLoginLoading}
+            disabled={isLoginLoading}
+          >
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
 
-        <Text style={styles.signUpText}>New to Mart-Aid? </Text>
+          <Text style={styles.signUpText}>New to Mart-Aid? </Text>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("SignUp")}
-        >
-          <Text style={styles.buttonText}>Register</Text>
-        </TouchableOpacity>
-      </Screen>
-    </HideKeyboard>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("SignUp")}
+          >
+            <Text style={styles.buttonText}>Register</Text>
+          </TouchableOpacity>
+        </Screen>
+      </HideKeyboard>
+    </>
   );
 };
 
@@ -188,5 +195,5 @@ const styles = StyleSheet.create({
 
   textContainer: {
     alignItems: "center",
-  }
+  },
 });

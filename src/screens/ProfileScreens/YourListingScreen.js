@@ -21,7 +21,7 @@ export default function ({ navigation }) {
 
   useEffect(() => {
     const unsubscribe = docRef.onSnapshot((doc) => {
-      if (doc.exist) {
+      if (doc.exists) {
         const updatedRequest = doc.data();
         setRequest(updatedRequest);
       }
@@ -50,7 +50,7 @@ export default function ({ navigation }) {
     );
   }
 
-  const docRef = firebase.firestore().collection("requests").doc(currentUser);
+  const docRef = firebase.firestore().collection("requests").doc(currentUser.toString());
 
   return (
     <Screen styles={styles.container}>
