@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import { StyleSheet, View, Text, FlatList, Image } from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import { getCurrentUserId } from "../../../api/auth";
@@ -48,6 +48,12 @@ export default function ({ navigation }) {
 
   return (
     <Screen style={styles.container}>
+
+
+  <Image
+    style={styles.logo}
+    source={require("../../../assets/Logo.png")}
+  ></Image>
       <View>
         <Text style={styles.input}>{request.name}</Text>
         <Text style={styles.input}>{request.address}</Text>
@@ -95,5 +101,15 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir",
     fontSize: 16,
     padding: 5,
+  },
+
+
+  logo: {
+    position: "absolute",
+    bottom: "0%",
+    left: "70%",
+    width: "16%",
+    height: "10%",
+    alignSelf: "center",
   },
 });

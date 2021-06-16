@@ -4,6 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Image,
   FlatList,
 } from "react-native";
 import Screen from "../../components/Screen";
@@ -132,5 +133,7 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir",
     fontSize: 18,
     fontWeight: '600'
-  }
+  },
+
+
 });

@@ -57,6 +57,12 @@ export default function ({ navigation }) {
 
   return (
     <Screen style={styles.container}>
+
+  <Image
+    style={styles.logo}
+    source={require("../../../assets/Logo.png")}
+  ></Image>
+
       <View>
         <FlatList
           data={requests}
@@ -91,5 +97,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+
+  logo: {
+    position: "absolute",
+    bottom: "0%",
+    left: "70%",
+    width: "16%",
+    height: "10%",
+    alignSelf: "center",
   },
 });
