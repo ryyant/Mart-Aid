@@ -14,9 +14,6 @@ import Icon from "react-native-vector-icons/FontAwesome";
 export default function Request({ navigation, route }) {
   console.log(route.params.name);
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [todoText, setTodoText] = useState("");
-
   function renderItem({ item }) {
     return (
       <View
