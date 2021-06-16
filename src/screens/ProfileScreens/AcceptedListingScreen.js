@@ -37,6 +37,7 @@ export default function ({ navigation }) {
           style={{
             width: "100%",
           }}
+         
         >
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
