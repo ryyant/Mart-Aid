@@ -36,13 +36,9 @@ export default function ({ navigation }) {
           style={{
             width: "100%",
           }}
-<<<<<<< HEAD
-         
-=======
           onPress={() => {
             navigation.navigate("Request", { ...item });
           }}
->>>>>>> b40ffcb7c82806b27e1bd6556b6749ea639b165f
         >
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
