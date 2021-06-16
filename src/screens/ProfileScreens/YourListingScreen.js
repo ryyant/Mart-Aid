@@ -23,8 +23,10 @@ export default function ({ navigation }) {
 
   useEffect(() => {
     const unsubscribe = docRef.onSnapshot((doc) => {
-      const updatedRequest = doc.data();
-      setRequest(updatedRequest);
+      if (doc.exist) {
+        const updatedRequest = doc.data();
+        setRequest(updatedRequest);
+      }
     });
 
     return () => {
@@ -53,6 +55,7 @@ export default function ({ navigation }) {
   const docRef = firebase.firestore().collection("requests").doc(currentUser);
 
   return (
+<<<<<<< HEAD
     
     <Screen styles={styles.container}>
       <View>
@@ -66,11 +69,13 @@ export default function ({ navigation }) {
         </TouchableOpacity>
 
         <Text style={styles.title}>Name :</Text>
+=======
+    <Screen style={styles.container}>
+      <View>
+>>>>>>> caa3240178fad4df4c8171173954c572d263b54e
         <Text style={styles.input}>{request.name}</Text>
-        <Text style={styles.title}>Address :</Text>
         <Text style={styles.input}>{request.address}</Text>
       </View>
-      <Text style={styles.title}>Shopping List :</Text>
       <View style={styles.list}>
         <FlatList
           data={request.list}
@@ -85,8 +90,6 @@ export default function ({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 
   button: {

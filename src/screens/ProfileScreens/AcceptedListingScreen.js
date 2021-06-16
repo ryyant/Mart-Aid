@@ -12,22 +12,25 @@ import {
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { getCurrentUserId } from "../../../api/auth";
 
-const db = firebase.firestore().collection("requests");
+const currentUser = getCurrentUserId();
+const db = firebase.firestore();
 
 export default function ({ navigation }) {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = db.onSnapshot((collection) => {
-      const updatedRequests = collection.docs.map((doc) => doc.data());
-      setRequests(updatedRequests);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+    db.collection("requests")
+      .where("acceptedBy", "==", currentUser)
+      .onSnapshot((querySnapshot) => {
+        var helper = [];
+        querySnapshot.forEach((doc) => {
+          helper.push(doc.data());
+        });
+        setRequests(helper);
+      });
+  },[]);
 
   function renderItem({ item }) {
     return (

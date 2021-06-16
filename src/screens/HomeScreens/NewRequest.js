@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Alert,
   Modal,
@@ -25,14 +25,15 @@ export default function NewRequest({ navigation }) {
   function renderItem({ item }) {
     return (
       <View style={styles.request}>
-        <Text>hello</Text>
+        <Text>{item}</Text>
       </View>
     );
   }
 
   function addToList() {
-    setList(`${brand} ${item} ${size} x${quantity}`);
-    console.log(list)
+    let newItem = `${brand} ${item} ${size} x${quantity}`;
+    setList(newItem);
+    console.log(list);
   }
 
   return (
@@ -116,8 +117,8 @@ export default function NewRequest({ navigation }) {
                       <TouchableOpacity
                         style={styles.modalButton}
                         onPress={() => {
-                          setModalVisible(!modalVisible);
                           addToList();
+                          setModalVisible(!modalVisible);
                         }}
                       >
                         <Text style={styles.textStyle}>Done</Text>
@@ -135,7 +136,6 @@ export default function NewRequest({ navigation }) {
             </TouchableOpacity>
 
             <View style={styles.list}>
-              {console.log(list)}
               <FlatList data={list} renderItem={renderItem} />
             </View>
           </View>
