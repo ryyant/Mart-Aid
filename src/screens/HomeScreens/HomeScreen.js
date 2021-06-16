@@ -4,6 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Image,
   FlatList,
 } from "react-native";
 import Screen from "../../components/Screen";
