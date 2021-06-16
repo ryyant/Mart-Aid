@@ -59,6 +59,15 @@ export default function HomeScreen({ navigation }) {
   return (
     <>
   <View style={{ backgroundColor: "#c3bef0", paddingTop:"12%" }}>
+    <TouchableOpacity
+      style={styles.logOutButton}
+      onPress={() => {
+        navigation.navigate("Login");
+      }}
+    >
+      <Icon name="sign-out" size={35} color="black" />
+    </TouchableOpacity>
+
     <Text style={styles.header}>Requests</Text>
   </View>
     <Screen style={styles.container}>
@@ -132,5 +141,12 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir",
     fontSize: 18,
     fontWeight: '600'
-  }
+  },
+
+  logOutButton: {
+    position: "absolute",
+    top: "95%",
+    right: "5%",
+  },
+
 });

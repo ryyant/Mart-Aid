@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Alert,
   Modal,
@@ -139,8 +139,8 @@ export default function NewRequest({ navigation }) {
                       <TouchableOpacity
                         style={styles.modalButton}
                         onPress={() => {
-                          setModalVisible(!modalVisible);
                           addToList();
+                          setModalVisible(!modalVisible);
                         }}
                       >
                         <Text style={styles.textStyle}>Done</Text>

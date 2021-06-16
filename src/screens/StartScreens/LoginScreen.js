@@ -96,6 +96,7 @@ export default ({ navigation }) => {
             }
             right={
               <TextInput.Icon
+                color = {"#0c4271"}
                 name={isPasswordVisible ? "eye-off" : "eye"}
                 onPress={() => setIsPasswordVisible((state) => !state)}
               />

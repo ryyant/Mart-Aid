@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import { getCurrentUserId } from "../../../api/auth";
+import Icon from "react-native-vector-icons/FontAwesome";
+
 
 
 export default function ({ navigation }) {
@@ -47,8 +55,24 @@ export default function ({ navigation }) {
   const docRef = firebase.firestore().collection("requests").doc(currentUser);
 
   return (
+<<<<<<< HEAD
+    
+    <Screen styles={styles.container}>
+      <View>
+        <TouchableOpacity
+        style={styles.logOutButton}
+        onPress={() => {
+          navigation.navigate("Login");
+        }}
+        >
+        <Icon name="sign-out" size={35} color="black" />
+        </TouchableOpacity>
+
+        <Text style={styles.title}>Name :</Text>
+=======
     <Screen style={styles.container}>
       <View>
+>>>>>>> caa3240178fad4df4c8171173954c572d263b54e
         <Text style={styles.input}>{request.name}</Text>
         <Text style={styles.input}>{request.address}</Text>
       </View>
@@ -95,5 +119,10 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir",
     fontSize: 16,
     padding: 5,
+  },
+  logOutButton: {
+    position: "absolute",
+    top: "95%",
+    right: "5%",
   },
 });
