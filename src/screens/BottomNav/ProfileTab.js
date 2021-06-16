@@ -4,9 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ProfileBar from '../../components/ProfileBar';
 
 const profileStack = createStackNavigator();
+import RequestScreen from '../HomeScreens/RequestScreen';
 
 const screens = [
   { name: "ProfileBar", component: ProfileBar },
+  { name: 'Request', component: RequestScreen }
 ];
 
 export default () => {

@@ -9,12 +9,11 @@ import {
   FlatList,
   Header,
 } from "react-native";
-import Screen from '../../components/Screen';
+import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 const db = firebase.firestore().collection("requests");
-
 
 export default function ({ navigation }) {
   const [requests, setRequests] = useState([]);
@@ -37,6 +36,9 @@ export default function ({ navigation }) {
           style={{
             width: "100%",
           }}
+          onPress={() => {
+            navigation.navigate("Request", { ...item });
+          }}
         >
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -51,14 +53,14 @@ export default function ({ navigation }) {
   }
 
   return (
-    <Screen style = {styles.container}>
+    <Screen style={styles.container}>
       <View>
-          <FlatList
-            data={requests}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id.toString()}
-          />
-          </View>
+        <FlatList
+          data={requests}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </View>
     </Screen>
   );
 }
@@ -87,5 +89,4 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  
 });
