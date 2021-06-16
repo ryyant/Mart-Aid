@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -12,6 +12,8 @@ import { CommonActions } from "@react-navigation/native";
 import HideKeyboard from "../../components/HideKeyboard";
 import Screen from "../../components/Screen";
 import * as Authentication from "../../../api/auth";
+import { getCurrentUserId } from "../../../api/auth";
+import firebase from "../../../api/firebase";
 
 export default ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -42,8 +44,7 @@ export default ({ navigation }) => {
         setIsLoginLoading(false);
         return console.error(error);
       }
-    );
-  };
+    );}
 
   return (
     <HideKeyboard>
@@ -188,5 +189,5 @@ const styles = StyleSheet.create({
 
   textContainer: {
     alignItems: "center",
-  },
+  }
 });
