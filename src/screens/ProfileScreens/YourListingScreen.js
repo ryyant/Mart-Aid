@@ -3,11 +3,14 @@ import {
   StyleSheet,
   View,
   Text,
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import { getCurrentUserId } from "../../../api/auth";
+import Icon from "react-native-vector-icons/FontAwesome";
+
 
 const currentUser = getCurrentUserId();
 if (currentUser == null) {
@@ -47,8 +50,18 @@ export default function ({ navigation }) {
     );
   }
   return (
+    
     <Screen styles={styles.container}>
       <View>
+        <TouchableOpacity
+        style={styles.logOutButton}
+        onPress={() => {
+          navigation.navigate("Login");
+        }}
+        >
+        <Icon name="sign-out" size={35} color="black" />
+        </TouchableOpacity>
+
         <Text style={styles.title}>Name :</Text>
         <Text style={styles.input}>{request.name}</Text>
         <Text style={styles.title}>Address :</Text>
@@ -96,5 +109,10 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir",
     fontSize: 16,
     padding: 5,
+  },
+  logOutButton: {
+    position: "absolute",
+    top: "95%",
+    right: "5%",
   },
 });

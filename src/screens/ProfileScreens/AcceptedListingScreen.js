@@ -36,13 +36,7 @@ export default function ({ navigation }) {
           style={{
             width: "100%",
           }}
-<<<<<<< HEAD
          
-=======
-          onPress={() => {
-            navigation.navigate("Request", { ...item });
-          }}
->>>>>>> b40ffcb7c82806b27e1bd6556b6749ea639b165f
         >
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
@@ -59,6 +53,14 @@ export default function ({ navigation }) {
   return (
     <Screen style={styles.container}>
       <View>
+      <TouchableOpacity
+        style={styles.logOutButton}
+        onPress={() => {
+          navigation.navigate("Login");
+        }}
+        >
+        <Icon name="sign-out" size={35} color="black" />
+        </TouchableOpacity>
         <FlatList
           data={requests}
           renderItem={renderItem}
@@ -92,5 +94,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  logOutButton: {
+    position: "absolute",
+    top: "95%",
+    right: "5%",
   },
 });
