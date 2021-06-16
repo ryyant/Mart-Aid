@@ -15,12 +15,11 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { getCurrentUserId } from "../../../api/auth";
 import firebase from "../../../api/firebase";
 
-const currentUser = getCurrentUserId();
 const db = firebase.firestore();
 
 export default function NewRequest({ navigation }) {
   const [list, setList] = useState([]);
-
+  const [currentUser, setCurrentUser] = useState(getCurrentUserId());
   const [modalVisible, setModalVisible] = useState(false);
   const [item, setItem] = useState("");
   const [brand, setBrand] = useState("");
@@ -28,7 +27,11 @@ export default function NewRequest({ navigation }) {
   const [quantity, setQuantity] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [acceptedBy, setAcceptedBy] = useState("");
+  const [acceptedBy, setAcceptedBy] = useState(null);
+
+  useEffect(() => {
+    setCurrentUser(getCurrentUserId());
+  }, []);
 
   function renderItem({ item }) {
     return (
@@ -50,6 +53,7 @@ export default function NewRequest({ navigation }) {
       address: address,
       acceptedBy: acceptedBy,
       list: list,
+      accepted: false
     });
   }
 
@@ -165,7 +169,10 @@ export default function NewRequest({ navigation }) {
           <View>
             <TouchableOpacity
               style={styles.footer}
-              onPress={() => {addNewRequest(); navigation.goBack()}}
+              onPress={() => {
+                addNewRequest();
+                navigation.goBack();
+              }}
             >
               <Icon
                 style={styles.icon}

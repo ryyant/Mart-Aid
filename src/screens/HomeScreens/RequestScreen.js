@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -13,8 +13,12 @@ import firebase from "../../../api/firebase";
 
 export default function Request({ navigation, route }) {
   console.log(route.params.id);
-  const db = firebase.firestore().collection('requests');
-  const currentUser = getCurrentUserId();
+  const db = firebase.firestore().collection("requests");
+  const [currentUser, setCurrentUser] = useState(getCurrentUserId());
+
+  useEffect(() => {
+    setCurrentUser(getCurrentUserId());
+  }, []);
 
   function renderItem({ item }) {
     return (
@@ -36,8 +40,9 @@ export default function Request({ navigation, route }) {
 
   function acceptRequest() {
     db.doc(route.params.id).update({
-      acceptedBy: currentUser
-    })
+      acceptedBy: currentUser,
+      accepted: true
+    });
     navigation.navigate("Home");
   }
 

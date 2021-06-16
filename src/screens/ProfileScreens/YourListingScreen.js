@@ -5,6 +5,7 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
+  Image
 } from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
@@ -50,20 +51,14 @@ export default function ({ navigation }) {
     );
   }
 
-  const docRef = firebase.firestore().collection("requests").doc(currentUser.toString());
+  const docRef = firebase
+    .firestore()
+    .collection("requests")
+    .doc(currentUser.toString());
 
   return (
-    <Screen styles={styles.container}>
+    <Screen style={styles.container}>
       <View>
-        <TouchableOpacity
-          style={styles.logOutButton}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-          <Icon name="sign-out" size={35} color="black" />
-        </TouchableOpacity>
-
         <Text style={styles.title}>Name :</Text>
         <Text style={styles.input}>{request.name}</Text>
         <Text style={styles.input}>{request.address}</Text>
@@ -75,6 +70,10 @@ export default function ({ navigation }) {
           keyExtractor={(item) => item.id}
         />
       </View>
+      <Image
+        style={styles.logo}
+        source={require("../../../assets/Logo.png")}
+      ></Image>
     </Screen>
   );
 }
@@ -116,5 +115,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "95%",
     right: "5%",
+  },
+  logo: {
+    position: "absolute",
+    bottom: "0%",
+    left: "70%",
+    width: "16%",
+    height: "10%",
+    alignSelf: "center",
   },
 });

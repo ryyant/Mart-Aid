@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
-  Header,
 } from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
@@ -15,21 +14,23 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { getCurrentUserId } from "../../../api/auth";
 
 const currentUser = getCurrentUserId();
-const db = firebase
-  .firestore()
-  .collection("requests")
-  .where("acceptedBy", "==", currentUser);
 
 export default function ({ navigation }) {
   const [requests, setRequests] = useState([]);
+  const [currentUser, setCurrentUser] = useState(getCurrentUserId());
 
   useEffect(() => {
-    const unsubscribe = db.onSnapshot((querySnapshot) => {
-      var helper = [];
-      querySnapshot.forEach((doc) => {
-        helper.push(doc.data());
-      });
-      setRequests(helper);
+    setCurrentUser(getCurrentUserId());
+  }, []);
+
+  useEffect(() => {
+    const db = firebase
+      .firestore()
+      .collection("requests")
+      .where("acceptedBy", "==", currentUser);
+    const unsubscribe = db.onSnapshot((collection) => {
+      const updatedRequests = collection.docs.map((doc) => doc.data());
+      setRequests(updatedRequests);
     });
 
     return () => {
@@ -43,6 +44,9 @@ export default function ({ navigation }) {
         <TouchableOpacity
           style={{
             width: "100%",
+          }}
+          onPress={() => {
+            navigation.navigate("Request", { ...item });
           }}
         >
           <View
@@ -59,21 +63,11 @@ export default function ({ navigation }) {
 
   return (
     <Screen style={styles.container}>
-
-  <Image
-    style={styles.logo}
-    source={require("../../../assets/Logo.png")}
-  ></Image>
-
+      <Image
+        style={styles.logo}
+        source={require("../../../assets/Logo.png")}
+      ></Image>
       <View>
-        <TouchableOpacity
-          style={styles.logOutButton}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-          <Icon name="sign-out" size={35} color="black" />
-        </TouchableOpacity>
         <FlatList
           data={requests}
           renderItem={renderItem}
@@ -108,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  
+
   logo: {
     position: "absolute",
     bottom: "0%",

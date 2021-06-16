@@ -12,13 +12,18 @@ import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
 import SecondIcon from 'react-native-vector-icons/Entypo';
 import SearchBar from "../../components/SearchBar";
+import { getCurrentUserId } from "../../../api/auth";
 
-const db = firebase.firestore().collection("requests");
+
 
 export default function HomeScreen({ navigation }) {
   const [requests, setRequests] = useState([]);
+  const [currentUser, setCurrentUser] = useState(getCurrentUserId());
+
+  useEffect(() => setCurrentUser(getCurrentUserId()));
 
   useEffect(() => {
+    const db = firebase.firestore().collection("requests").where('id', '!=', currentUser).where('accepted','==', false);
     const unsubscribe = db.onSnapshot((collection) => {
       const updatedRequests = collection.docs.map((doc) => doc.data());
       setRequests(updatedRequests);
