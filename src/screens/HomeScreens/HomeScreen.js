@@ -4,6 +4,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Image,
   FlatList,
 } from "react-native";
 import Screen from "../../components/Screen";
@@ -148,5 +149,4 @@ const styles = StyleSheet.create({
     top: "95%",
     right: "5%",
   },
-
 });

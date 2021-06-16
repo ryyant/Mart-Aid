@@ -61,6 +61,12 @@ export default function ({ navigation }) {
 
   return (
     <Screen style={styles.container}>
+
+  <Image
+    style={styles.logo}
+    source={require("../../../assets/Logo.png")}
+  ></Image>
+
       <View>
         <TouchableOpacity
           style={styles.logOutButton}
@@ -104,9 +110,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+<<<<<<< HEAD
+  
+=======
+
+  logo: {
+    position: "absolute",
+    bottom: "0%",
+    left: "70%",
+    width: "16%",
+    height: "10%",
+    alignSelf: "center",
   logOutButton: {
     position: "absolute",
     top: "95%",
     right: "5%",
   },
+>>>>>>> f7b5abdb76cc19e9c60caf6ab26537e9523ec505
 });
