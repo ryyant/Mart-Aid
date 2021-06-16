@@ -44,7 +44,7 @@ export default ({ navigation }) => {
         setIsLoginLoading(false);
         return console.error(error);
       }
-    );
+    );}
 
   return (
     <HideKeyboard>
@@ -189,5 +189,5 @@ const styles = StyleSheet.create({
 
   textContainer: {
     alignItems: "center",
-  },
+  }
 });
