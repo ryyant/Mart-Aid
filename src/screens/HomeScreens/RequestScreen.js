@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import {
-  Alert,
   Modal,
-  Pressable,
   Text,
   StyleSheet,
   View,
+  TextInput,
   TouchableOpacity,
   FlatList,
 } from "react-native";
