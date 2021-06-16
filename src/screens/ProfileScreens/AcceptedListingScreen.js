@@ -24,11 +24,9 @@ export default function ({ navigation }) {
   const [requests, setRequests] = useState([]);
 
   useEffect(() => {
-    console.log(currentUser);
     const unsubscribe = db.onSnapshot((querySnapshot) => {
       var helper = [];
       querySnapshot.forEach((doc) => {
-        console.log(doc.data().name)
         helper.push(doc.data());
       });
       setRequests(helper);

@@ -43,7 +43,6 @@ export default ({ navigation }) => {
         return console.error(error);
       }
     );
-    console.log(Authentication.getCurrentUserId());
   };
 
   return (

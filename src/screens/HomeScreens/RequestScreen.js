@@ -8,9 +8,13 @@ import {
 } from "react-native";
 import Screen from "../../components/Screen";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { getCurrentUserId } from "../../../api/auth";
+import firebase from "../../../api/firebase";
 
 export default function Request({ navigation, route }) {
-  console.log(route.params.name);
+  console.log(route.params.id);
+  const db = firebase.firestore().collection('requests');
+  const currentUser = getCurrentUserId();
 
   function renderItem({ item }) {
     return (
@@ -31,6 +35,9 @@ export default function Request({ navigation, route }) {
   }
 
   function acceptRequest() {
+    db.doc(route.params.id).update({
+      acceptedBy: currentUser
+    })
     navigation.navigate("Home");
   }
 
