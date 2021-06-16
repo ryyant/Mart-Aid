@@ -12,8 +12,9 @@ import Screen from "../../components/Screen";
 import HideKeyboard from "../../components/HideKeyboard";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+export default function Request({ navigation, route }) {
+  console.log(route.params.name);
 
-export default function Request({ navigation }) {
   const SAMPLE = [
     { title: "Milk Meji 1L x1", id: "0", done: false },
     { title: "Mala Chips Calbee 500g x2", id: "1", done: false },
@@ -35,7 +36,7 @@ export default function Request({ navigation }) {
           justifyContent: "space-between",
         }}
       >
-        <Text>{item.title}</Text>
+        <Text>{item}</Text>
       </View>
     );
   }
@@ -43,7 +44,7 @@ export default function Request({ navigation }) {
   return (
     <>
       <View style={{ backgroundColor: "#c3bef0", paddingTop: "14%" }}>
-      <TouchableOpacity
+        <TouchableOpacity
           style={styles.backButton}
           onPress={() => {
             navigation.goBack();
@@ -53,23 +54,18 @@ export default function Request({ navigation }) {
         </TouchableOpacity>
         <Text style={styles.header}> Request </Text>
       </View>
-      <HideKeyboard>
-        <Screen styles={styles.container}>
-          <View>
-            <Text style={styles.title}>Name :</Text>
-            <TextInput placeholder="eg. Lim Kah Shing" style={styles.input} />
-            <Text style={styles.title}>Address :</Text>
-            <TextInput
-              placeholder="eg. Yishun Ave 2 Blk 21 #04-51"
-              style={styles.input}
-            />
-          </View>
-          <Text style={styles.title}>Shopping List :</Text>
-          <View style={styles.list}>
-            <FlatList data={SAMPLE} renderItem={renderItem} />
-          </View>
-        </Screen>
-      </HideKeyboard>
+      <Screen styles={styles.container}>
+        <View>
+          <Text style={styles.title}>Name :</Text>
+          <Text style={styles.input}>{route.params.name}</Text>
+          <Text style={styles.title}>Address :</Text>
+          <Text style={styles.input}>{route.params.address}</Text>
+        </View>
+        <Text style={styles.title}>Shopping List :</Text>
+        <View style={styles.list}>
+          <FlatList data={route.params.list} renderItem={renderItem} keyExtractor={(item) => item.id}/>
+        </View>
+      </Screen>
     </>
   );
 }
@@ -174,6 +170,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "Avenir",
     fontWeight: "bold",
-    paddingLeft:10
+    paddingLeft: 10,
   },
 });
