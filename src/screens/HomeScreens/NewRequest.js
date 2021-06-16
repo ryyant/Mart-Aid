@@ -12,15 +12,23 @@ import {
 import Screen from "../../components/Screen";
 import HideKeyboard from "../../components/HideKeyboard";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { getCurrentUserId } from "../../../api/auth";
+import firebase from "../../../api/firebase";
+
+const currentUser = getCurrentUserId();
+const db = firebase.firestore();
 
 export default function NewRequest({ navigation }) {
   const [list, setList] = useState([]);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [item, setItem] = useState('');
-  const [brand, setBrand] = useState('');
-  const [size, setSize] = useState('');
-  const [quantity, setQuantity] = useState('');
+  const [item, setItem] = useState("");
+  const [brand, setBrand] = useState("");
+  const [size, setSize] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [acceptedBy, setAcceptedBy] = useState("");
 
   function renderItem({ item }) {
     return (
@@ -32,8 +40,17 @@ export default function NewRequest({ navigation }) {
 
   function addToList() {
     let newItem = `${brand} ${item} ${size} x${quantity}`;
-    setList(newItem);
-    console.log(list);
+    setList([...list, newItem]);
+  }
+
+  function addNewRequest() {
+    db.collection("requests").doc(currentUser).set({
+      id: currentUser,
+      name: name,
+      address: address,
+      acceptedBy: acceptedBy,
+      list: list,
+    });
   }
 
   return (
@@ -53,9 +70,14 @@ export default function NewRequest({ navigation }) {
         <Screen style={styles.container}>
           <View>
             <Text style={styles.title}>Name:</Text>
-            <TextInput placeholder="eg. Lim Kah Shing" style={styles.input} />
+            <TextInput
+              onChangeText={(text) => setName(text)}
+              placeholder="eg. Lim Kah Shing"
+              style={styles.input}
+            />
             <Text style={styles.title}>Address:</Text>
             <TextInput
+              onChangeText={(text) => setAddress(text)}
               placeholder="eg. Yishun Ave 2 Blk 21 #04-51"
               style={styles.input}
             />
@@ -86,21 +108,21 @@ export default function NewRequest({ navigation }) {
                     />
                     <Text style={styles.modalText}>Brand Name:</Text>
                     <TextInput
-                    onChangeText={(text) => setBrand(text)}
+                      onChangeText={(text) => setBrand(text)}
                       placeholder="e.g. Meji"
                       placeholderTextColor="#B8BDBD"
                       style={styles.modalText}
                     />
                     <Text style={styles.modalText}>Item Size:</Text>
                     <TextInput
-                    onChangeText={(text) => setSize(text)}
+                      onChangeText={(text) => setSize(text)}
                       placeholder="e.g 1L/500g/1 packet"
                       style={styles.modalText}
                       placeholderTextColor="#B8BDBD"
                     />
                     <Text style={styles.modalText}>Quantity:</Text>
                     <TextInput
-                    onChangeText={(text) => setQuantity(text)}
+                      onChangeText={(text) => setQuantity(text)}
                       placeholder="e.g. 3"
                       placeholderTextColor="#B8BDBD"
                       style={styles.modalText}
@@ -141,7 +163,10 @@ export default function NewRequest({ navigation }) {
           </View>
 
           <View>
-            <TouchableOpacity style={styles.footer} onPress={() => {}}>
+            <TouchableOpacity
+              style={styles.footer}
+              onPress={() => {addNewRequest(); navigation.goBack()}}
+            >
               <Icon
                 style={styles.icon}
                 name="cart-arrow-down"
