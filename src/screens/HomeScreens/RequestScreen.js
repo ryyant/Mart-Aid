@@ -32,6 +32,10 @@ export default function Request({ navigation, route }) {
     );
   }
 
+  function acceptRequest() {
+    navigation.navigate("Home")
+  }
+  
   return (
     <>
       <View style={{ backgroundColor: "#c3bef0", paddingTop: "14%" }}>
@@ -55,6 +59,15 @@ export default function Request({ navigation, route }) {
         <Text style={styles.title}>Shopping List :</Text>
         <View style={styles.list}>
           <FlatList data={route.params.list} renderItem={renderItem} keyExtractor={(item) => item.id}/>
+        </View>
+        <View > 
+          <TouchableOpacity
+            style={styles.footer}
+            onPress={acceptRequest}
+          >
+            <Icon style={styles.icon} name="check" size={23} color="#676B6B" />
+            <Text style = {styles.AcceptRequest}>Accept Request</Text>
+          </TouchableOpacity>
         </View>
       </Screen>
     </>
@@ -156,6 +169,7 @@ const styles = StyleSheet.create({
   },
   list: {
     width: "100%",
+    paddingBottom: '25%' ,
   },
   backbutton: {
     fontSize: 15,
@@ -163,4 +177,33 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 10,
   },
+  AcceptRequest: {
+    fontFamily: "Avenir",
+    fontSize: 18,
+    fontWeight: '600'
+  },
+  footer: {
+    borderWidth: 1,
+    borderColor: "rgba(0,0,0,0.2)",
+    alignSelf: "center",
+    alignItems: 'center',
+    justifyContent: "center",
+    width: '80%',
+    position: "relative",
+    bottom: 10,
+    height: 40,
+    backgroundColor: "#CADEFC",
+    borderRadius: 30,
+    color: "grey",
+    flexDirection: "row",
+    shadowColor: "rgba(0,0,0, .4)", // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 1, // IOS
+    shadowRadius: 1, //IOS
+    elevation: 2, // Android
+  },
+  icon: {
+    paddingRight: 8,
+  },
+
 });
