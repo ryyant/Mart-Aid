@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import {
-  Alert,
   Modal,
-  Pressable,
   Text,
   StyleSheet,
   View,
   TextInput,
-  Button,
   TouchableOpacity,
   FlatList,
 } from "react-native";
@@ -43,8 +40,6 @@ export default function Request({ navigation, route }) {
       </View>
     );
   }
-
-  const backToRequests = "< Back to Requests";
 
   return (
     <>

@@ -67,7 +67,7 @@ export default ({ navigation }) => {
               },
             }}
             label="Email address"
-            placeholder="Your e-mail"
+            placeholder="e.g. harrystyles@mail.com"
             keyboardType="email-address"
             autoCapitalize="none"
             returnKeyType="next"
@@ -81,6 +81,7 @@ export default ({ navigation }) => {
             mode="flat"
             style={styles.input}
             label="Password"
+            placeholder="e.g. iLoveHarry"
             theme={{
               colors: {
                 primary: "black",

@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
 
   logo: {
     position: "absolute",
-    top: "15%",
-    left: "50%",
+    top: "25%",
+    right: "60%",
     width: "90%",
     height: "45%",
     alignSelf: "center",
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     paddingBottom: "2%",
     fontSize: 50,
     fontFamily: "AvenirNext-Bold",
-    alignSelf: "flex-start",
+    alignSelf: "flex-end",
   },
 
   textContainer: {
