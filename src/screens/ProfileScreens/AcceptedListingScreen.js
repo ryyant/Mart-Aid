@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   Image,
   FlatList,
@@ -13,7 +12,6 @@ import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { getCurrentUserId } from "../../../api/auth";
 
-const currentUser = getCurrentUserId();
 
 export default function ({ navigation }) {
   const [requests, setRequests] = useState([]);
@@ -52,10 +50,10 @@ export default function ({ navigation }) {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={{ fontSize: 20, width: "90%" }}>{item.address}</Text>
+           <Text style={{ fontSize: 19, width: "90%", fontFamily: 'Avenir', fontWeight:'bold'}}>{item.address}</Text>
             <Icon name="angle-double-right" size={30} color="black" />
           </View>
-          <Text>{item.name}</Text>
+          <Text style={{fontFamily: 'Avenir'}}>{item.name}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -94,14 +92,12 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   request: {
-    padding: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    borderBottomColor: "blue",
+    padding: 20,
+    borderBottomColor: "#CCA8E9",
     borderBottomWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-  },
+    },
 
   logo: {
     position: "absolute",

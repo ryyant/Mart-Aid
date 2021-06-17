@@ -73,13 +73,13 @@ export default function NewRequest({ navigation }) {
       <HideKeyboard>
         <Screen style={styles.container}>
           <View>
-            <Text style={styles.title}>Name:</Text>
+            <Text style={styles.title}>Name :</Text>
             <TextInput
               onChangeText={(text) => setName(text)}
               placeholder="eg. Lim Kah Shing"
               style={styles.input}
             />
-            <Text style={styles.title}>Address:</Text>
+            <Text style={styles.title}>Address :</Text>
             <TextInput
               onChangeText={(text) => setAddress(text)}
               placeholder="eg. Yishun Ave 2 Blk 21 #04-51"
@@ -87,7 +87,7 @@ export default function NewRequest({ navigation }) {
             />
           </View>
 
-          <Text style={styles.title}>Shopping List:</Text>
+          <Text style={styles.title}>Shopping List :</Text>
 
           <View style={styles.centeredView}>
             <Modal

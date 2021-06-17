@@ -7,7 +7,7 @@ import Screen from '../components/Screen'
 import Icon from "react-native-vector-icons/FontAwesome";
 
 const profileStack = createMaterialTopTabNavigator();
-export default () => {
+export default ({navigation}) => {
   return (
     <Screen style={styles.container}>
       <View style={{ backgroundColor: "#c3bef0" }}>

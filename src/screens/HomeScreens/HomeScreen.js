@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   FlatList,
 } from "react-native";
 import Screen from "../../components/Screen";
@@ -49,10 +48,10 @@ export default function HomeScreen({ navigation }) {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={{ fontSize: 20, width: "90%" }}>{item.address}</Text>
+            <Text style={{ fontSize: 19, width: "90%", fontFamily: 'Avenir', fontWeight:'bold'}}>{item.address}</Text>
             <Icon name="angle-double-right" size={30} color="black" />
           </View>
-          <Text>{item.name}</Text>
+          <Text style={{fontFamily: 'Avenir'}}>{item.name}</Text>
         </TouchableOpacity>
       </View>
     );

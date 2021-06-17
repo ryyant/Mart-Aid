@@ -10,11 +10,15 @@ import {
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import { getCurrentUserId } from "../../../api/auth";
-import Icon from "react-native-vector-icons/FontAwesome";
 
 export default function ({ navigation }) {
   const [request, setRequest] = useState("");
   const [currentUser, setCurrentUser] = useState(getCurrentUserId());
+
+  const docRef = firebase
+    .firestore()
+    .collection("requests")
+    .doc(currentUser.toString());
 
   useEffect(() => {
     setCurrentUser(getCurrentUserId());
@@ -36,25 +40,12 @@ export default function ({ navigation }) {
   function renderItem({ item }) {
     return (
       <View
-        style={{
-          padding: 10,
-          paddingTop: 20,
-          paddingBottom: 20,
-          borderBottomColor: "black",
-          borderBottomWidth: 1,
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
+        style={styles.request}
       >
         <Text>{item}</Text>
       </View>
     );
   }
-
-  const docRef = firebase
-    .firestore()
-    .collection("requests")
-    .doc(currentUser.toString());
 
   function deleteListing() {
     docRef.delete();
@@ -63,7 +54,7 @@ export default function ({ navigation }) {
 
   return (
     <Screen style={styles.container}>
-      <View>
+      <View style={{paddingTop: 10, paddingLeft: 5}}>
         <Text style={styles.input}>{request.name}</Text>
         <Text style={styles.input}>{request.address}</Text>
       </View>
@@ -102,7 +93,7 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingTop: 20,
     paddingBottom: 20,
-    borderBottomColor: "blue",
+    borderBottomColor: "#CCA8E9",
     borderBottomWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -117,6 +108,7 @@ const styles = StyleSheet.create({
     fontFamily: "Avenir",
     fontSize: 16,
     padding: 5,
+    fontWeight: "bold",
   },
   logOutButton: {
     position: "absolute",

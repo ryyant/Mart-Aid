@@ -12,7 +12,6 @@ import { getCurrentUserId } from "../../../api/auth";
 import firebase from "../../../api/firebase";
 
 export default function Request({ navigation, route }) {
-  console.log(route.params.id);
   const db = firebase.firestore().collection("requests");
   const [currentUser, setCurrentUser] = useState(getCurrentUserId());
 
@@ -27,7 +26,7 @@ export default function Request({ navigation, route }) {
           padding: 10,
           paddingTop: 20,
           paddingBottom: 20,
-          borderBottomColor: "black",
+          borderBottomColor: "#CCA8E9",
           borderBottomWidth: 1,
           flexDirection: "row",
           justifyContent: "space-between",
