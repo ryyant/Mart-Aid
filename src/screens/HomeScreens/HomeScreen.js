@@ -4,7 +4,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   FlatList,
 } from "react-native";
 import Screen from "../../components/Screen";
@@ -12,13 +11,18 @@ import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
 import SecondIcon from 'react-native-vector-icons/Entypo';
 import SearchBar from "../../components/SearchBar";
+import { getCurrentUserId } from "../../../api/auth";
 
-const db = firebase.firestore().collection("requests");
+
 
 export default function HomeScreen({ navigation }) {
   const [requests, setRequests] = useState([]);
+  const [currentUser, setCurrentUser] = useState(getCurrentUserId());
+
+  useEffect(() => setCurrentUser(getCurrentUserId()));
 
   useEffect(() => {
+    const db = firebase.firestore().collection("requests").where('id', '!=', currentUser).where('accepted','==', false);
     const unsubscribe = db.onSnapshot((collection) => {
       const updatedRequests = collection.docs.map((doc) => doc.data());
       setRequests(updatedRequests);
@@ -44,10 +48,10 @@ export default function HomeScreen({ navigation }) {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={{ fontSize: 20, width: "90%" }}>{item.address}</Text>
+            <Text style={{ fontSize: 19, width: "90%", fontFamily: 'Avenir', fontWeight:'bold'}}>{item.address}</Text>
             <Icon name="angle-double-right" size={30} color="black" />
           </View>
-          <Text>{item.name}</Text>
+          <Text style={{fontFamily: 'Avenir'}}>{item.name}</Text>
         </TouchableOpacity>
       </View>
     );

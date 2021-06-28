@@ -15,12 +15,11 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { getCurrentUserId } from "../../../api/auth";
 import firebase from "../../../api/firebase";
 
-const currentUser = getCurrentUserId();
 const db = firebase.firestore();
 
 export default function NewRequest({ navigation }) {
   const [list, setList] = useState([]);
-
+  const [currentUser, setCurrentUser] = useState(getCurrentUserId());
   const [modalVisible, setModalVisible] = useState(false);
   const [item, setItem] = useState("");
   const [brand, setBrand] = useState("");
@@ -28,7 +27,11 @@ export default function NewRequest({ navigation }) {
   const [quantity, setQuantity] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
-  const [acceptedBy, setAcceptedBy] = useState("");
+  const [acceptedBy, setAcceptedBy] = useState('');
+
+  useEffect(() => {
+    setCurrentUser(getCurrentUserId());
+  }, []);
 
   function renderItem({ item }) {
     return (
@@ -50,6 +53,7 @@ export default function NewRequest({ navigation }) {
       address: address,
       acceptedBy: acceptedBy,
       list: list,
+      accepted: false
     });
   }
 
@@ -69,13 +73,13 @@ export default function NewRequest({ navigation }) {
       <HideKeyboard>
         <Screen style={styles.container}>
           <View>
-            <Text style={styles.title}>Name:</Text>
+            <Text style={styles.title}>Name :</Text>
             <TextInput
               onChangeText={(text) => setName(text)}
               placeholder="eg. Lim Kah Shing"
               style={styles.input}
             />
-            <Text style={styles.title}>Address:</Text>
+            <Text style={styles.title}>Address :</Text>
             <TextInput
               onChangeText={(text) => setAddress(text)}
               placeholder="eg. Yishun Ave 2 Blk 21 #04-51"
@@ -83,7 +87,7 @@ export default function NewRequest({ navigation }) {
             />
           </View>
 
-          <Text style={styles.title}>Shopping List:</Text>
+          <Text style={styles.title}>Shopping List :</Text>
 
           <View style={styles.centeredView}>
             <Modal
@@ -165,7 +169,10 @@ export default function NewRequest({ navigation }) {
           <View>
             <TouchableOpacity
               style={styles.footer}
-              onPress={() => {addNewRequest(); navigation.goBack()}}
+              onPress={() => {
+                addNewRequest();
+                navigation.goBack();
+              }}
             >
               <Icon
                 style={styles.icon}

@@ -3,34 +3,38 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   Image,
   FlatList,
-  Header,
 } from "react-native";
 import Screen from "../../components/Screen";
 import firebase from "../../../api/firebase";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { getCurrentUserId } from "../../../api/auth";
 
-const currentUser = getCurrentUserId();
-const db = firebase.firestore();
 
 export default function ({ navigation }) {
   const [requests, setRequests] = useState([]);
+  const [currentUser, setCurrentUser] = useState(getCurrentUserId());
 
   useEffect(() => {
-    db.collection("requests")
-      .where("acceptedBy", "==", currentUser)
-      .onSnapshot((querySnapshot) => {
-        var helper = [];
-        querySnapshot.forEach((doc) => {
-          helper.push(doc.data());
-        });
-        setRequests(helper);
-      });
-  },[]);
+    setCurrentUser(getCurrentUserId());
+  }, []);
+
+  useEffect(() => {
+    const db = firebase
+      .firestore()
+      .collection("requests")
+      .where("acceptedBy", "==", currentUser);
+    const unsubscribe = db.onSnapshot((collection) => {
+      const updatedRequests = collection.docs.map((doc) => doc.data());
+      setRequests(updatedRequests);
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   function renderItem({ item }) {
     return (
@@ -39,15 +43,17 @@ export default function ({ navigation }) {
           style={{
             width: "100%",
           }}
-         
+          onPress={() => {
+            navigation.navigate("Accepted Request", { ...item });
+          }}
         >
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
-            <Text style={{ fontSize: 20, width: "90%" }}>{item.address}</Text>
+           <Text style={{ fontSize: 19, width: "90%", fontFamily: 'Avenir', fontWeight:'bold'}}>{item.address}</Text>
             <Icon name="angle-double-right" size={30} color="black" />
           </View>
-          <Text>{item.name}</Text>
+          <Text style={{fontFamily: 'Avenir'}}>{item.name}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -55,12 +61,10 @@ export default function ({ navigation }) {
 
   return (
     <Screen style={styles.container}>
-
-  <Image
-    style={styles.logo}
-    source={require("../../../assets/Logo.png")}
-  ></Image>
-
+      <Image
+        style={styles.logo}
+        source={require("../../../assets/Logo.png")}
+      ></Image>
       <View>
         <FlatList
           data={requests}
@@ -88,14 +92,16 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   request: {
-    padding: 10,
-    paddingTop: 20,
-    paddingBottom: 20,
-    borderBottomColor: "blue",
+    padding: 20,
+    borderBottomColor: "#CCA8E9",
     borderBottomWidth: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+<<<<<<< HEAD
   },
+=======
+    },
+>>>>>>> 237762bfdcb29bf6f9a52e41ddbcfd6e8c0f6864
 
   logo: {
     position: "absolute",

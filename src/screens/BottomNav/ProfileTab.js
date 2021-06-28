@@ -2,11 +2,13 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import ProfileBar from '../../components/ProfileBar';
+import AcceptedRequestScreen from '../HomeScreens/AcceptedRequestScreen';
 
 const profileStack = createStackNavigator();
 
 const screens = [
   { name: "ProfileBar", component: ProfileBar },
+  { name: 'Accepted Request', component: AcceptedRequestScreen }
 ];
 
 export default () => {
