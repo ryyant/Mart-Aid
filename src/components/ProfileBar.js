@@ -3,8 +3,9 @@ import { SafeAreaView, StyleSheet, StatusBar, View, Text, TouchableOpacity } fro
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import YourListingScreen from "../screens/ProfileScreens/YourListingScreen";
 import AcceptedListingScreen from "../screens/ProfileScreens/AcceptedListingScreen";
-import Screen from '../components/Screen'
+//import Screen from '../components/Screen'
 import Icon from "react-native-vector-icons/FontAwesome";
+import Screen from "../../components/Screen";
 
 const profileStack = createMaterialTopTabNavigator();
 export default () => {
